@@ -1,0 +1,85 @@
+{
+  "description": "Schema suggestion for Qayyum Library catalogue import. One row represents one intellectual work; editions/volumes should be linked as editions/manifestations, not counted as separate works unless the project explicitly chooses otherwise.",
+  "required": [
+    "title_ar",
+    "author_name",
+    "language",
+    "source_id",
+    "source_record_id",
+    "verification_status"
+  ],
+  "fields": {
+    "record_id": "string",
+    "title_ar": "string",
+    "title_original": "string",
+    "title_alt": "string",
+    "author_name": "string",
+    "author_death_year_hijri": "integer",
+    "editor": "string",
+    "translator": "string",
+    "publisher": "string",
+    "publication_place": "string",
+    "publication_year": "integer",
+    "edition": "string",
+    "volume_count": "integer",
+    "language": "string",
+    "school_family": "string",
+    "madhhab": "string",
+    "subject_main": "string",
+    "subject_sub": "string",
+    "book_type": "string",
+    "period": "string",
+    "manuscript_or_print": "string",
+    "isbn": "string",
+    "oclc": "string",
+    "openiti_uri": "string",
+    "archive_identifier": "string",
+    "catalogue_record_url": "string",
+    "full_text_url": "string",
+    "pdf_url": "string",
+    "file_format": "string",
+    "access_status": "string",
+    "license": "string",
+    "source_id": "string",
+    "source_record_id": "string",
+    "verification_status": "string",
+    "duplicate_group_id": "string",
+    "notes": "string"
+  },
+  "controlled_values": {
+    "school_family": [
+      "Shi'i",
+      "Sunni",
+      "Ibadi",
+      "Zaydi",
+      "Ismaili",
+      "Other Muslim",
+      "Comparative/Unassigned"
+    ],
+    "access_status": [
+      "Full text open",
+      "Metadata only",
+      "Restricted",
+      "Out of copyright verified",
+      "Unknown"
+    ],
+    "verification_status": [
+      "Verified",
+      "Needs review",
+      "Unverified"
+    ],
+    "manuscript_or_print": [
+      "Manuscript",
+      "Printed",
+      "Digital born",
+      "Unknown"
+    ]
+  },
+  "important_rules": [
+    "Never infer a madhhab solely from an author's name; store as Unassigned/Needs review when uncertain.",
+    "Never count manuscript catalogue entries as full books without checking what each record describes.",
+    "Deduplicate by normalized title + author + work identity; retain separate edition records.",
+    "Store a stable source URL and source record identifier for every imported record.",
+    "Do not host a PDF unless its licence or permission allows redistribution."
+  ]
+}

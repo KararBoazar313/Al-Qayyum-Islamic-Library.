@@ -1,53 +1,13 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101d36">
-<meta name="description" content="مكتبة القيّوم — كنز المعرفة الإسلامية بين يديك">
-<title>مكتبة القيّوم | كنز المعرفة الإسلامية</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
-</head>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#061a31"><meta name="description" content="مكتبة القيّوم — كنز المعرفة الإسلامية بين يديك"><title>مكتبة القيّوم</title><link rel="stylesheet" href="styles.css"></head>
 <body>
-<header class="topbar"><div class="brand"><div class="seal">ق</div><div><strong>مكتبة القيّوم</strong><small>كنز المعرفة الإسلامية بين يديك</small></div></div>
-<nav><a href="#home">الرئيسية</a><a href="#schools">المدارس</a><a href="#subjects">العلوم</a><a href="#sources">المصادر</a></nav>
-<button class="menu" id="menuBtn" aria-label="فتح القائمة">☰</button></header>
+<header class="topbar"><a class="brand-mini" href="#home" aria-label="مكتبة القيوم">مكتبة القيّوم</a><nav aria-label="التنقل الرئيسي"><a class="active" href="#home">⌂ الرئيسية</a><a href="#sections">▦ الأقسام</a><a href="#library">▣ المكتبة</a><a href="#research">✎ البحوث</a><a href="#about">ⓘ عن الموقع</a><a href="#contact">✉ اتصل بنا</a></nav><a class="admin" href="#admin" id="adminBtn">♟ دخول الإدارة</a><button class="menu-toggle" aria-label="فتح القائمة">☰</button></header>
 <main id="home">
-<section class="hero"><div class="ornament">۞</div><p class="eyebrow">موسوعة معرفية إسلامية متعددة المدارس</p>
-<h1>مكتبة <span>القيّوم</span></h1><p class="hero-copy">مساحة علمية تجمع الفهارس والمصادر والكتب والتراث الإسلامي، وتقرّب المعرفة للباحث والقارئ.</p>
-<div class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="ابحث عن كتاب أو مؤلف أو موضوع..." aria-label="ابحث في المكتبة"><button id="searchBtn">بحث</button></div>
-<div class="quick"><span>بحث شامل</span><span>تصنيفات علمية</span><span>مصادر موثقة</span></div>
+<section class="hero"><div class="hero-shade"></div><div class="hero-copy"><p class="side-quote">طلب العلم عبادة<br><small>ومعرفة الحق نور يهدي إلى الصواب</small></p><div class="hero-title"><h1>مكتبة القيّوم</h1><p>كنز المعرفة الإسلامية بين يديك</p></div><div class="search-wrap"><form id="searchForm"><input id="searchInput" type="search" placeholder="ابحث في المكتبة ..." aria-label="ابحث في المكتبة"><button>بحث</button></form><p class="search-feedback" id="searchFeedback" aria-live="polite"></p></div></div></section>
+<section class="categories" id="sections" aria-label="أقسام المكتبة">
+<a class="category" href="#research" style="--tile:url('assets/category-1.jpg')"><span>البحوث والدراسات</span></a><a class="category" href="#library" style="--tile:url('assets/category-2.jpg')"><span>المكتبة الإسلامية</span></a><a class="category" href="#history" style="--tile:url('assets/category-3.jpg')"><span>التاريخ الإسلامي</span></a><a class="category" href="#hadith" style="--tile:url('assets/category-4.jpg')"><span>الحديث والروايات</span></a><a class="category" href="#fiqh" style="--tile:url('assets/category-5.jpg')"><span>الفقه والمسائل الشرعية</span></a><a class="category" href="#ahlulbayt" style="--tile:url('assets/category-6.jpg')"><span>أهل البيت عليهم السلام</span></a><a class="category" href="#aqaed" style="--tile:url('assets/category-7.jpg')"><span>العقائد والتوحيد</span></a><a class="category" href="#quran" style="--tile:url('assets/category-8.jpg')"><span>القرآن الكريم وتفسيره</span></a>
 </section>
-<section class="stats" aria-label="أهداف المكتبة">
-<div><b>100,000</b><span>هدف الأعمال الشيعية</span></div><div><b>100,000</b><span>هدف الأعمال السنية</span></div><div><b>مفتوح</b><span>لبقية المدارس الإسلامية</span></div>
-</section>
-<section class="section" id="schools"><div class="section-head"><div><p class="eyebrow">تصفّح حسب المدرسة</p><h2>مدارس واتجاهات إسلامية</h2></div><p>اختر المدرسة للوصول إلى فهارسها ومصادرها.</p></div>
-<div class="cards schools">
-<a class="tile" href="#sources" data-search="الامامية الاثنا عشرية شيعي"><span>☪</span><b>الإمامية الاثنا عشرية</b><small>العقائد والحديث والفقه والتراث</small></a>
-<a class="tile" href="#sources" data-search="السنة الحنفي المالكي الشافعي الحنبلي"><span>۞</span><b>مدارس أهل السنة</b><small>المذاهب الفقهية وعلوم الحديث</small></a>
-<a class="tile" href="#sources" data-search="الزيدية"><span>◇</span><b>الزيدية</b><small>مصادر ومؤلفات المدرسة الزيدية</small></a>
-<a class="tile" href="#sources" data-search="الاسماعيلية"><span>◇</span><b>الإسماعيلية</b><small>التراث والفهارس الإسماعيلية</small></a>
-<a class="tile" href="#sources" data-search="الاباضية"><span>◇</span><b>الإباضية</b><small>الفقه والعقيدة والتاريخ</small></a>
-<a class="tile" href="#sources" data-search="المعتزلة الاشاعرة الماتريدية"><span>◇</span><b>مدارس علم الكلام</b><small>الأشعرية والماتريدية والمعتزلة وغيرها</small></a>
-</div></section>
-<section class="section alt" id="subjects"><div class="section-head"><div><p class="eyebrow">مجالات المعرفة</p><h2>تصفّح العلوم والتخصصات</h2></div></div>
-<div class="subject-grid" id="subjectGrid">
-<button data-term="القرآن الكريم وعلومه">القرآن الكريم وعلومه</button><button data-term="العقائد وعلم الكلام">العقائد وعلم الكلام</button><button data-term="الحديث وعلوم الرواية">الحديث وعلوم الرواية</button><button data-term="الفقه والأحكام الشرعية">الفقه والأحكام الشرعية</button><button data-term="أصول الفقه والقواعد الفقهية">أصول الفقه والقواعد الفقهية</button><button data-term="السيرة والتاريخ الإسلامي">السيرة والتاريخ الإسلامي</button><button data-term="التراجم والطبقات والأعلام">التراجم والطبقات والأعلام</button><button data-term="الأخلاق والتربية الإسلامية">الأخلاق والتربية الإسلامية</button><button data-term="الأدعية والزيارات والعبادات">الأدعية والزيارات والعبادات</button><button data-term="اللغة العربية وعلومها">اللغة العربية وعلومها</button><button data-term="المنطق والفلسفة والحكمة">المنطق والفلسفة والحكمة</button><button data-term="العرفان والتصوف">العرفان والتصوف</button><button data-term="الفرق والأديان ومقارنة المذاهب">الفرق والأديان ومقارنة المذاهب</button><button data-term="الاقتصاد والاجتماع والسياسة الشرعية">الاقتصاد والاجتماع والسياسة الشرعية</button><button data-term="الدعوة والمناظرات والردود">الدعوة والمناظرات والردود</button><button data-term="الحوزة والعلوم الأكاديمية">الحوزة والعلوم الأكاديمية</button><button data-term="الموسوعات والفهارس والمخطوطات">الموسوعات والفهارس والمخطوطات</button>
-</div></section>
-<section class="section" id="results"><div class="section-head"><div><p class="eyebrow">نتائج البحث</p><h2>دليل الاستكشاف</h2></div><span class="muted" id="resultCount">ابدأ بالبحث أو اختر مجالاً</span></div><div id="resultList" class="result-list"><div class="empty">اكتب كلمة بحث أو اختر أحد العلوم أعلاه لعرض مصادر الاستكشاف المناسبة.</div></div></section>
-<section class="section source-section" id="sources"><div class="section-head"><div><p class="eyebrow">مصادر الفهرسة</p><h2>مصادر المكتبات الرقمية</h2></div><p>روابط خارجية للاستكشاف والفهرسة؛ الإتاحة والحقوق تختلف من سجل إلى آخر.</p></div>
-<div class="source-list">
-<a href="https://kitab-project.org/data/download" target="_blank" rel="noopener"><b>OpenITI / KITAB</b><span>نصوص تراثية وبيانات وصفية</span><i>فتح المصدر ↗</i></a>
-<a href="https://digitallibrary.al-furqan.com/" target="_blank" rel="noopener"><b>مؤسسة الفرقان — المكتبة الرقمية</b><span>فهارس المخطوطات والمجموعات</span><i>فتح المصدر ↗</i></a>
-<a href="https://archive.org/developers/" target="_blank" rel="noopener"><b>Internet Archive</b><span>بيانات الكتب والنسخ الرقمية</span><i>فتح المصدر ↗</i></a>
-<a href="https://shamela.amuslim.org/download.php" target="_blank" rel="noopener"><b>المكتبة الشاملة</b><span>نصوص وحزم كتب إسلامية</span><i>فتح المصدر ↗</i></a>
-<a href="https://www.hathitrust.org/" target="_blank" rel="noopener"><b>HathiTrust</b><span>فهرسة ونسخ رقمية بحسب الإتاحة</span><i>فتح المصدر ↗</i></a>
-<a href="https://openlibrary.org/developers/api" target="_blank" rel="noopener"><b>Open Library</b><span>بيانات ببليوغرافية وطبعات</span><i>فتح المصدر ↗</i></a>
-</div></section>
-<section class="notice"><strong>تنويه علمي وحقوقي</strong><p>هذه النسخة واجهة أولية للاستكشاف وليست قاعدة كتب مكتملة. أعداد 100 ألف عمل شيعي و100 ألف عمل سني أهداف للمشروع وليست أعداداً متاحة حالياً. لا يُنسب كتاب إلى مدرسة دون تحقق، ولا يُعاد نشر ملف إلا بعد التثبت من حقوقه.</p></section>
+<section class="lower" id="library"><div class="side-panel latest"><h2>أحدث الإضافات <span>◖</span></h2><div class="panel-body"><p>سيظهر هنا أحدث ما يُضاف إلى المكتبة</p><p>كتب ومراجع علمية موثقة</p><p>إضافات جديدة بعد ربط فهرس الكتب</p><a href="#library">عرض المزيد ←</a></div></div><div class="motto" id="about"><div><h2>العلم نور</h2><p>فلنجعله دليل حياتنا</p></div></div><div class="side-panel featured"><h2>أقسام مميزة <span>★</span></h2><div class="panel-body"><a href="#ahlulbayt">كتب الإمامة والولاية</a><a href="#fiqh">العبادات والمعاملات</a><a href="#ethics">الأخلاق والآداب</a><a href="#language">اللغة العربية وعلومها</a><a href="#sections">عرض جميع الأقسام ←</a></div></div></section>
 </main>
-<footer><div class="brand"><div class="seal">ق</div><div><strong>مكتبة القيّوم</strong><small>اللهم صل على محمد وآل محمد</small></div></div><span>نسخة واجهة أولية قابلة للتطوير</span></footer>
-<script src="assets/app.js"></script>
-</body></html>
+<footer id="contact"><div class="social"><a href="#contact" aria-label="يوتيوب">▶</a><a href="#contact" aria-label="تلغرام">➤</a><a href="#contact" aria-label="فيسبوك">f</a><a href="#contact" aria-label="تغذية">◔</a></div><p>اللهم صل على محمد وآل محمد</p><small>مكتبة القيّوم © 2026 · جميع الحقوق محفوظة</small></footer>
+<div class="notice" id="notice" role="status" aria-live="polite"></div><script src="app.js"></script></body></html>
