@@ -1,13 +1,50 @@
 <!doctype html>
-<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#061a31"><meta name="description" content="مكتبة القيّوم — كنز المعرفة الإسلامية بين يديك"><title>مكتبة القيّوم</title><link rel="stylesheet" href="styles.css"></head>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#071a2e"><meta name="description" content="مكتبة القيّوم — مكتبة إسلامية متعددة المدارس واللغات، للبحث والقراءة والتحقيق العلمي">
+  <title>مكتبة القيّوم</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-<header class="topbar"><a class="brand-mini" href="#home" aria-label="مكتبة القيوم">مكتبة القيّوم</a><nav aria-label="التنقل الرئيسي"><a class="active" href="#home">⌂ الرئيسية</a><a href="#sections">▦ الأقسام</a><a href="#library">▣ المكتبة</a><a href="#research">✎ البحوث</a><a href="#about">ⓘ عن الموقع</a><a href="#contact">✉ اتصل بنا</a></nav><a class="admin" href="#admin" id="adminBtn">♟ دخول الإدارة</a><button class="menu-toggle" aria-label="فتح القائمة">☰</button></header>
-<main id="home">
-<section class="hero"><div class="hero-shade"></div><div class="hero-copy"><p class="side-quote">طلب العلم عبادة<br><small>ومعرفة الحق نور يهدي إلى الصواب</small></p><div class="hero-title"><h1>مكتبة القيّوم</h1><p>كنز المعرفة الإسلامية بين يديك</p></div><div class="search-wrap"><form id="searchForm"><input id="searchInput" type="search" placeholder="ابحث في المكتبة ..." aria-label="ابحث في المكتبة"><button>بحث</button></form><p class="search-feedback" id="searchFeedback" aria-live="polite"></p></div></div></section>
-<section class="categories" id="sections" aria-label="أقسام المكتبة">
-<a class="category" href="#research" style="--tile:url('assets/category-1.jpg')"><span>البحوث والدراسات</span></a><a class="category" href="#library" style="--tile:url('assets/category-2.jpg')"><span>المكتبة الإسلامية</span></a><a class="category" href="#history" style="--tile:url('assets/category-3.jpg')"><span>التاريخ الإسلامي</span></a><a class="category" href="#hadith" style="--tile:url('assets/category-4.jpg')"><span>الحديث والروايات</span></a><a class="category" href="#fiqh" style="--tile:url('assets/category-5.jpg')"><span>الفقه والمسائل الشرعية</span></a><a class="category" href="#ahlulbayt" style="--tile:url('assets/category-6.jpg')"><span>أهل البيت عليهم السلام</span></a><a class="category" href="#aqaed" style="--tile:url('assets/category-7.jpg')"><span>العقائد والتوحيد</span></a><a class="category" href="#quran" style="--tile:url('assets/category-8.jpg')"><span>القرآن الكريم وتفسيره</span></a>
-</section>
-<section class="lower" id="library"><div class="side-panel latest"><h2>أحدث الإضافات <span>◖</span></h2><div class="panel-body"><p>سيظهر هنا أحدث ما يُضاف إلى المكتبة</p><p>كتب ومراجع علمية موثقة</p><p>إضافات جديدة بعد ربط فهرس الكتب</p><a href="#library">عرض المزيد ←</a></div></div><div class="motto" id="about"><div><h2>العلم نور</h2><p>فلنجعله دليل حياتنا</p></div></div><div class="side-panel featured"><h2>أقسام مميزة <span>★</span></h2><div class="panel-body"><a href="#ahlulbayt">كتب الإمامة والولاية</a><a href="#fiqh">العبادات والمعاملات</a><a href="#ethics">الأخلاق والآداب</a><a href="#language">اللغة العربية وعلومها</a><a href="#sections">عرض جميع الأقسام ←</a></div></div></section>
+<header class="topbar" id="topbar">
+  <a class="brand-mini" href="#home">مكتبة القيّوم</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+  <nav id="mainNav" aria-label="التنقل الرئيسي">
+    <a class="active" href="#home">⌂ الرئيسية</a><a href="#sections">▦ الأقسام</a><a href="#library">▣ المكتبة</a><a href="#research">✎ البحوث</a><a href="#calendar">☾ التقويم</a><a href="#about">ⓘ عن الموقع</a><a href="#contact">✉ اتصل بنا</a>
+  </nav>
+  <div class="top-actions"><button class="language-button" id="languageButton" title="تغيير اللغة">🌐 العربية</button><a class="admin" href="#login">♟ دخول الإدارة</a></div>
+</header>
+<main id="homeView">
+  <section class="hero" aria-label="مكتبة القيوم">
+    <div class="hero-shade"></div><div class="hero-copy">
+      <p class="side-quote">طلب العلم عبادة<br><small>ومعرفة الحق نور يهدي إلى الصواب</small></p>
+      <div class="hero-title"><h1>مكتبة القيّوم</h1><p>كنز المعرفة الإسلامية بين يديك</p></div>
+      <div class="search-wrap"><form id="searchForm"><input id="searchInput" type="search" placeholder="ابحث في الكتب والروايات والمؤلفين ..." aria-label="ابحث في المكتبة"><button>بحث</button></form><p class="search-feedback" id="searchFeedback" aria-live="polite"></p></div>
+      <div class="hero-shortcuts"><a href="#hadith">بحث الروايات والأسانيد</a><a href="#study">الوضع العلمي</a><a href="#calendar">التقويم الهجري</a></div>
+    </div>
+  </section>
+  <section class="categories" id="sections" aria-label="أقسام المكتبة">
+    <a class="category" href="#research" style="--tile:url('assets/category-1.jpg')"><span>البحوث والدراسات</span></a>
+    <a class="category" href="#library" style="--tile:url('assets/category-2.jpg')"><span>المكتبة الإسلامية</span></a>
+    <a class="category" href="#history" style="--tile:url('assets/category-3.jpg')"><span>التاريخ الإسلامي</span></a>
+    <a class="category" href="#hadith" style="--tile:url('assets/category-4.jpg')"><span>الحديث والروايات</span></a>
+    <a class="category" href="#fiqh" style="--tile:url('assets/category-5.jpg')"><span>الفقه والمسائل الشرعية</span></a>
+    <a class="category" href="#ahlulbayt" style="--tile:url('assets/category-6.jpg')"><span>أهل البيت عليهم السلام</span></a>
+    <a class="category" href="#aqaed" style="--tile:url('assets/category-7.jpg')"><span>العقائد والتوحيد</span></a>
+    <a class="category" href="#quran" style="--tile:url('assets/category-8.jpg')"><span>القرآن الكريم وتفسيره</span></a>
+  </section>
+  <section class="home-extras">
+    <div class="side-panel latest"><h2>أحدث الإضافات <span>◖</span></h2><div class="panel-body"><p>تظهر الكتب الجديدة بعد مراجعة بياناتها وحقوقها</p><p>لا تُنشر النسخ الرقمية قبل التحقق من الإذن</p><a href="#library">استعراض فهرس المكتبة ←</a></div></div>
+    <div class="motto" id="about"><div><h2>العلم نور</h2><p>فلنجعله دليل حياتنا</p></div></div>
+    <div class="side-panel featured"><h2>أقسام مميزة <span>★</span></h2><div class="panel-body"><a href="#ahlulbayt">كتب الإمامة والولاية</a><a href="#fiqh">العبادات والمعاملات</a><a href="#ethics">الأخلاق والآداب</a><a href="#language">اللغة العربية وعلومها</a><a href="#sections">عرض جميع الأقسام ←</a></div></div>
+  </section>
+  <section class="quick-access"><a href="#study"><b>🎓 الوضع العلمي</b><span>دفتر الدروس والتحقيق والاقتباسات</span></a><a href="#hadith"><b>📜 موسوعة الروايات</b><span>المتون والطرق والرواة والمصادر</span></a><a href="#groups"><b>🏛 المجموعات والقنوات</b><span>مجتمعات علمية بإشراف ومراجعة</span></a><a href="#dashboard"><b>📊 مركز التحكم</b><span>إدارة المنصة والتقارير والصلاحيات</span></a><a href="#assistant"><b>🤖 المساعد العلمي</b><span>مصادر موثقة وتحليل علمي مفصول</span></a><a href="#personal"><b>📚 مكتبتي الشخصية</b><span>رفوف القراءة والملاحظات والعلامات</span></a><a href="#reader"><b>📖 قارئ الكتب</b><span>قراءة PDF والنصوص الرقمية</span></a><a href="#notifications"><b>🔔 الإشعارات</b><span>داخل الموقع والمتصفح والهاتف</span></a></section>
 </main>
+<div id="pageView" class="page-view" hidden></div>
 <footer id="contact"><div class="social"><a href="#contact" aria-label="يوتيوب">▶</a><a href="#contact" aria-label="تلغرام">➤</a><a href="#contact" aria-label="فيسبوك">f</a><a href="#contact" aria-label="تغذية">◔</a></div><p>اللهم صل على محمد وآل محمد</p><small>مكتبة القيّوم © 2026 · جميع الحقوق محفوظة</small></footer>
-<div class="notice" id="notice" role="status" aria-live="polite"></div><script src="app.js"></script></body></html>
+<div class="notice" id="notice" role="status" aria-live="polite"></div>
+<dialog id="languageDialog" class="modal"><form method="dialog"><button class="modal-close" aria-label="إغلاق">×</button></form><h2>لغة واجهة المكتبة</h2><p class="muted">هذه قائمة أولية قابلة للتوسعة إلى لغات العالم.</p><div class="language-grid" id="languageGrid"></div></dialog>
+<script src="app.js"></script>
+</body></html>
