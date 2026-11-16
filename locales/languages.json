@@ -1,0 +1,465 @@
+{
+  "default_language": "ar",
+  "default_direction": "rtl",
+  "languages": [
+    {
+      "code": "ar",
+      "name_ar": "العربية",
+      "name_native": "Arabic",
+      "script": "Arab",
+      "direction": "rtl",
+      "note": "لغة الموقع الأصلية",
+      "enabled": true
+    },
+    {
+      "code": "fa",
+      "name_ar": "الفارسية",
+      "name_native": "Persian",
+      "script": "Arab",
+      "direction": "rtl",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "ku",
+      "name_ar": "الكردية",
+      "name_native": "Kurdish",
+      "script": "Arab",
+      "direction": "rtl",
+      "note": "قد تختلف الكتابة بحسب اللهجة والمنطقة",
+      "enabled": true
+    },
+    {
+      "code": "tr",
+      "name_ar": "التركية",
+      "name_native": "Turkish",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "hy",
+      "name_ar": "الأرمنية",
+      "name_native": "Armenian",
+      "script": "Armn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "ka",
+      "name_ar": "الجورجية",
+      "name_native": "Georgian",
+      "script": "Geor",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "ru",
+      "name_ar": "الروسية",
+      "name_native": "Russian",
+      "script": "Cyrl",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "haz",
+      "name_ar": "الهزارجية",
+      "name_native": "Hazaragi",
+      "script": "Arab",
+      "direction": "rtl",
+      "note": "لغة هزارَة؛ رمز ISO 639-3",
+      "enabled": true
+    },
+    {
+      "code": "ps",
+      "name_ar": "البشتوية",
+      "name_native": "Pashto",
+      "script": "Arab",
+      "direction": "rtl",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "ur",
+      "name_ar": "الأردية",
+      "name_native": "Urdu",
+      "script": "Arab",
+      "direction": "rtl",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "hi",
+      "name_ar": "الهندية",
+      "name_native": "Hindi",
+      "script": "Deva",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "bn",
+      "name_ar": "البنغالية",
+      "name_native": "Bengali",
+      "script": "Beng",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "en",
+      "name_ar": "الإنجليزية",
+      "name_native": "English",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "sco",
+      "name_ar": "الاسكتلندية",
+      "name_native": "Scots",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "المقصود Scots؛ تختلف عن الغيلية الاسكتلندية",
+      "enabled": true
+    },
+    {
+      "code": "ga",
+      "name_ar": "الأيرلندية",
+      "name_native": "Irish",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "fr",
+      "name_ar": "الفرنسية",
+      "name_native": "French",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "es",
+      "name_ar": "الإسبانية",
+      "name_native": "Spanish",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "pt",
+      "name_ar": "البرتغالية",
+      "name_native": "Portuguese",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "it",
+      "name_ar": "الإيطالية",
+      "name_native": "Italian",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "de",
+      "name_ar": "الألمانية",
+      "name_native": "German",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "da",
+      "name_ar": "الدنماركية",
+      "name_native": "Danish",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "el",
+      "name_ar": "اليونانية",
+      "name_native": "Greek",
+      "script": "Grek",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "sq",
+      "name_ar": "الألبانية",
+      "name_native": "Albanian",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "hu",
+      "name_ar": "المجرية",
+      "name_native": "Hungarian",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "تصحيح إملائي لمدخل «المجربة»",
+      "enabled": true
+    },
+    {
+      "code": "bg",
+      "name_ar": "البلغارية",
+      "name_native": "Bulgarian",
+      "script": "Cyrl",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "bs",
+      "name_ar": "البوسنية",
+      "name_native": "Bosnian",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "sr",
+      "name_ar": "الصربية",
+      "name_native": "Serbian",
+      "script": "Cyrl",
+      "direction": "ltr",
+      "note": "يمكن إضافة تفضيل كتابة لاتينية لاحقاً",
+      "enabled": true
+    },
+    {
+      "code": "ro",
+      "name_ar": "الرومانية",
+      "name_native": "Romanian",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "tk",
+      "name_ar": "التركمانية",
+      "name_native": "Turkmen",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "uz",
+      "name_ar": "الأوزبكية",
+      "name_native": "Uzbek",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "قد تُستخدم كتابة سيريلية أيضاً",
+      "enabled": true
+    },
+    {
+      "code": "zh-Hans",
+      "name_ar": "الصينية المبسطة",
+      "name_native": "Chinese (Simplified)",
+      "script": "Hans",
+      "direction": "ltr",
+      "note": "يمكن إضافة الصينية التقليدية لاحقاً",
+      "enabled": true
+    },
+    {
+      "code": "ja",
+      "name_ar": "اليابانية",
+      "name_native": "Japanese",
+      "script": "Jpan",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "ko",
+      "name_ar": "الكورية",
+      "name_native": "Korean",
+      "script": "Kore",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "ta",
+      "name_ar": "التاميلية",
+      "name_native": "Tamil",
+      "script": "Taml",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "ms",
+      "name_ar": "المالايوية",
+      "name_native": "Malay",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "تصحيح شائع لكتابة «الميلاوية»",
+      "enabled": true
+    },
+    {
+      "code": "tt",
+      "name_ar": "التتارية",
+      "name_native": "Tatar",
+      "script": "Cyrl",
+      "direction": "ltr",
+      "note": "قد توجد كتابة لاتينية",
+      "enabled": true
+    },
+    {
+      "code": "ce",
+      "name_ar": "الشيشانية",
+      "name_native": "Chechen",
+      "script": "Cyrl",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "az",
+      "name_ar": "الأذربيجانية",
+      "name_native": "Azerbaijani",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "تُستخدم الكتابة العربية/السيريلية تاريخياً أيضاً",
+      "enabled": true
+    },
+    {
+      "code": "ber",
+      "name_ar": "الأمازيغية",
+      "name_native": "Amazigh",
+      "script": "Tfng",
+      "direction": "ltr",
+      "note": "رمز مجموعة لغوية؛ يمكن تحديد تمازيغت/تشلحيت/قبائلية لاحقاً",
+      "enabled": true
+    },
+    {
+      "code": "cop",
+      "name_ar": "القبطية",
+      "name_native": "Coptic",
+      "script": "Copt",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "he",
+      "name_ar": "العبرية",
+      "name_native": "Hebrew",
+      "script": "Hebr",
+      "direction": "rtl",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "syr",
+      "name_ar": "السريانية",
+      "name_native": "Syriac",
+      "script": "Syrc",
+      "direction": "rtl",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "vi",
+      "name_ar": "الفيتنامية",
+      "name_native": "Vietnamese",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "th",
+      "name_ar": "التايلاندية",
+      "name_native": "Thai",
+      "script": "Thai",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "my",
+      "name_ar": "البورمية",
+      "name_native": "Burmese",
+      "script": "Mymr",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "so",
+      "name_ar": "الصومالية",
+      "name_native": "Somali",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "am",
+      "name_ar": "الإثيوبية (الأمهرية)",
+      "name_native": "Amharic",
+      "script": "Ethi",
+      "direction": "ltr",
+      "note": "الأمهرية لغة رئيسية في إثيوبيا؛ «الإثيوبية» اسم عام غير محدد",
+      "enabled": true
+    },
+    {
+      "code": "fi",
+      "name_ar": "الفنلندية",
+      "name_native": "Finnish",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "sv",
+      "name_ar": "السويدية",
+      "name_native": "Swedish",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "no",
+      "name_ar": "النرويجية",
+      "name_native": "Norwegian",
+      "script": "Latn",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    },
+    {
+      "code": "uk",
+      "name_ar": "الأوكرانية",
+      "name_native": "Ukrainian",
+      "script": "Cyrl",
+      "direction": "ltr",
+      "note": "",
+      "enabled": true
+    }
+  ]
+}

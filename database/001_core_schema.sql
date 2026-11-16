@@ -119,7 +119,7 @@ CREATE TABLE author_names (
     author_id UUID NOT NULL REFERENCES authors(id) ON DELETE CASCADE,
     name VARCHAR(300) NOT NULL,
     name_kind VARCHAR(32) NOT NULL DEFAULT 'alternate'
-        CHECK (name_kind IN ('birth','kunya','laqab',' nisba','alternate','transliteration'))
+        CHECK (name_kind IN ('birth','kunya','laqab','nisba','alternate','transliteration'))
 );
 
 CREATE TABLE works (

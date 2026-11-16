@@ -204,24 +204,7 @@ CREATE TABLE community_posts (
     CHECK (moderation_status IN ('pending','visible','held','removed')),
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
-CREATE TABLE direct_conversations (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
-);
-CREATE TABLE direct_conversation_members (
-  conversation_id UUID NOT NULL REFERENCES direct_conversations(id) ON DELETE CASCADE,
-  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  PRIMARY KEY(conversation_id, user_id)
-);
-CREATE TABLE direct_messages (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  conversation_id UUID NOT NULL REFERENCES direct_conversations(id) ON DELETE CASCADE,
-  sender_user_id UUID NOT NULL REFERENCES users(id) ON DELETE RESTRICT,
-  body TEXT,
-  attachment_file_id UUID REFERENCES digital_files(id) ON DELETE SET NULL,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-  CHECK (body IS NOT NULL OR attachment_file_id IS NOT NULL)
-);
+-- لا تُنشأ جداول رسائل خاصة؛ التواصل العام فقط عبر المجموعات والقنوات والدعم.
 
 -- المتابعة والتقييمات والشارات والتوثيق
 CREATE TABLE follows (
@@ -353,7 +336,6 @@ CREATE INDEX idx_annotations_user_edition ON annotations(user_id, edition_id);
 CREATE INDEX idx_research_owner_status ON research_projects(owner_user_id, status, updated_at DESC);
 CREATE INDEX idx_memory_user_kind ON user_scientific_memories(user_id, memory_kind);
 CREATE INDEX idx_community_space_posts ON community_posts(space_id, created_at DESC);
-CREATE INDEX idx_direct_messages_conversation ON direct_messages(conversation_id, created_at DESC);
 CREATE INDEX idx_notifications_unread ON notifications(user_id, created_at DESC) WHERE read_at IS NULL;
 CREATE INDEX idx_support_status_priority ON support_tickets(status, priority, created_at DESC);
 CREATE INDEX idx_approval_queue_pending ON owner_approval_queue(created_at) WHERE status = 'pending';

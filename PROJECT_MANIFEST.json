@@ -1,0 +1,22 @@
+{
+  "project": "Al-Qayyum Islamic Library",
+  "version": "0.3.0-planning-bundle",
+  "default_language": "ar",
+  "language_count": 51,
+  "sql_files": [
+    "database/001_core_schema.sql",
+    "database/002_platform_modules.sql",
+    "database/003_catalog_import.sql",
+    "database/004_security_community_backups.sql"
+  ],
+  "status": "frontend prototype + draft database schemas + requirements documentation",
+  "not_implemented": [
+    "production API",
+    "live PostgreSQL deployment",
+    "real authentication",
+    "full translations",
+    "live search engine",
+    "OCR/HTR services",
+    "production backups"
+  ]
+}
