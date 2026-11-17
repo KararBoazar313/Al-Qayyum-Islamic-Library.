@@ -6,7 +6,7 @@ import argparse, csv, hashlib, json, re, sys
 from pathlib import Path
 from urllib.parse import urlparse
 
-REQUIRED = ["title_ar", "author_name", "language", "source_id", "source_record_id", "verification_status"]
+REQUIRED = ["author_name", "language", "source_id", "source_record_id", "verification_status"]
 ALLOWED_FAMILIES = {"Shi'i", "Sunni", "Ibadi", "Zaydi", "Ismaili", "Other Muslim", "Comparative/Unassigned", ""}
 ALLOWED_VERIFY = {"Verified", "Needs review", "Unverified"}
 URL_FIELDS = ["catalogue_record_url", "full_text_url", "pdf_url"]
@@ -41,6 +41,7 @@ def main():
         issues = []
         for field in REQUIRED:
             if not (row.get(field) or "").strip(): issues.append(f"missing {field}")
+        if not ((row.get('title_ar') or '').strip() or (row.get('title_original') or '').strip()): issues.append('missing title_ar or title_original')
         family = (row.get("school_family") or "").strip()
         if family not in ALLOWED_FAMILIES: issues.append("unknown school_family; do not infer it")
         status = (row.get("verification_status") or "").strip()
