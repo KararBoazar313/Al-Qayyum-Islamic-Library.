@@ -204,7 +204,7 @@ CREATE TABLE community_posts (
     CHECK (moderation_status IN ('pending','visible','held','removed')),
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
--- لا تُنشأ جداول رسائل خاصة؛ التواصل العام فقط عبر المجموعات والقنوات والدعم.
+-- لا توجد رسائل خاصة بين الأعضاء؛ التفاعل عبر المجموعات والقنوات العامة فقط.
 
 -- المتابعة والتقييمات والشارات والتوثيق
 CREATE TABLE follows (
