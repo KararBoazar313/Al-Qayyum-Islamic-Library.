@@ -1,11 +1,14 @@
 {
   "project": "مكتبة القيّوم",
-  "version": "2026.11-interface-recovery",
+  "version": "2026.11-single-approved-interface",
   "default_language": "ar",
   "additional_languages": 50,
   "sql_files": 4,
   "backend_connected": false,
   "translation_complete": false,
   "owner_id_reserved": 313,
-  "homepage_reference": "assets/qayyum-home-reference-2026.png"
+  "homepage_reference": "docs/approved-interface-reference.png",
+  "legacy_homepage_assets_removed": true,
+  "single_stylesheet": true,
+  "sections_directory": true
 }
