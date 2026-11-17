@@ -6,8 +6,10 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
-    "test": "node --test",
-    "bootstrap-owner": "node src/bootstrap-owner.js"
+    "test": "node --test ../tests/server-smoke.test.js",
+    "bootstrap-owner": "node src/bootstrap-owner.js",
+    "migrate": "node scripts/migrate.js",
+    "preflight": "node scripts/preflight.js"
   },
   "engines": {
     "node": ">=20"

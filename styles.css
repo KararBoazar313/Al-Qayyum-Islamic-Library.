@@ -44,3 +44,6 @@ html[dir="ltr"] .field label{text-align:left}
 html[dir="ltr"] .book-actions{direction:ltr}
 html[dir="ltr"] .planned-grid a{text-align:center}
 @media(max-width:760px){html[dir="ltr"] .qayyum-home .topbar{direction:ltr}}
+
+/* Qayyum in-site reader — phase 2 */
+.reader-pdf-stage{display:flex;justify-content:center;align-items:flex-start;overflow:auto;min-height:60vh;padding:14px;background:#d8c7a7;border-radius:12px}.reader-pdf-stage canvas{height:auto;box-shadow:0 5px 22px #0004;background:white}.reader-epub-stage{height:76vh;min-height:520px;overflow:hidden;background:#fffaf0;border-radius:12px;color:#241a0e}.reader-epub-stage iframe{border:0!important}.reader-night .reader-pdf-stage,.reader-night .reader-epub-stage{background:#101d2b}.reader-night .reader-pdf-stage canvas{filter:brightness(.82) sepia(.12)}@media(max-width:700px){.reader-pdf-stage{padding:5px;min-height:50vh}.reader-epub-stage{height:68vh;min-height:420px}}

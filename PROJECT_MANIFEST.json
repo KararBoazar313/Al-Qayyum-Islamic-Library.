@@ -31,5 +31,10 @@
   "tests_python_passed": 9,
   "tests_node_passed": 5,
   "test_report": "docs/TEST_REPORT_AR.md",
-  "test_date": "2026-11-17"
+  "test_date": "2026-11-17",
+  "release_date": "2026-11-17",
+  "release_label": "Qayyum Library — consolidated phase delivery",
+  "delivery_status": "local-code-package; production deployment pending external infrastructure",
+  "phase_report": "docs/PHASES_COMPLETION_AR.md",
+  "roadmap": "docs/ROADMAP_AR.md"
 }
