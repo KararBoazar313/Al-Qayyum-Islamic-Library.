@@ -32,3 +32,14 @@ DATABASE_URL='postgresql://...' ../ops/restore-postgres.sh /secure/backups/qayyu
 - اختبار الاستعادة، وسجلات التدقيق، وحدود الرفع، وسياسة الخصوصية قبل استقبال الجمهور.
 
 `npm run preflight` يفحص الإعدادات الأساسية فقط، ولا يثبت أن قاعدة البيانات أو البريد أو HTTPS تعمل فعلياً. لم تُشغّل هذه الإجراءات على خادم إنتاج ضمن هذه الحزمة.
+
+
+## واجهات التقويم والإشعارات
+- `GET /api/calendar/events`: يعرض المناسبات المنشورة فقط.
+- `POST /api/calendar/events/suggest`: يستقبل اقتراح مناسبة من مستخدم مسجل ويضعه بانتظار مراجعة المالك.
+- `GET /api/admin/calendar/events`: قائمة المناسبات غير المنشورة للمديرين والمالك.
+- `PUT /api/admin/calendar/events/:id/decision`: قرار النشر أو الإرجاع أو السحب، ومتاح للمالك حصراً.
+- `GET /api/notifications` و`PUT /api/notifications/:id/read` و`PUT /api/notifications/read-all`: إدارة إشعارات الحساب.
+- `GET/PUT /api/preferences/platform`: قراءة وحفظ تفضيلات الحساب والتقويم والإشعارات.
+
+هذه الواجهات تحتاج قاعدة PostgreSQL بعد تطبيق migrations. وهي لا ترسل إشعارات Push أو بريد إلكتروني بذاتها؛ ذلك يتطلب مزود إرسال خارجي وإعداد مفاتيحه وموافقة المستخدم.
