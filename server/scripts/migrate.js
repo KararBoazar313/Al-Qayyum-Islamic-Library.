@@ -17,7 +17,10 @@ try {
     const version=filename.slice(0,3);
     const done=await client.query('SELECT 1 FROM qayyum.schema_migrations WHERE version=$1',[version]);
     if(done.rowCount){console.log(`SKIP ${filename}`);continue}
-    const sql=await fs.readFile(path.join(root,filename),'utf8');
+    const raw=await fs.readFile(path.join(root,filename),'utf8');
+    // Migration files are also usable manually and contain their own outer BEGIN/COMMIT.
+    // Remove only those wrappers here so the migration and its ledger row commit atomically.
+    const sql=raw.replace(/^\s*BEGIN\s*;?/i,'').replace(/COMMIT\s*;?\s*$/i,'');
     await client.query('BEGIN');
     try { await client.query(sql); await client.query('INSERT INTO qayyum.schema_migrations(version,filename) VALUES($1,$2)',[version,filename]); await client.query('COMMIT'); console.log(`APPLIED ${filename}`); }
     catch(error){await client.query('ROLLBACK');throw new Error(`Migration ${filename} failed: ${error.message}`,{cause:error})}
