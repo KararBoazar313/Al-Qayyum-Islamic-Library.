@@ -50,3 +50,7 @@ html[dir="ltr"] .planned-grid a{text-align:center}
 
 /* Role-gated navigation must remain hidden even when component styles set display. */
 [hidden]{display:none!important}
+
+/* Administrative report snapshots */
+.report-snapshot{white-space:pre-wrap;overflow-wrap:anywhere;direction:ltr;text-align:left;max-height:24rem;overflow:auto;padding:1rem;border-radius:12px;background:rgba(20,32,54,.06);font: .88rem/1.6 ui-monospace,SFMono-Regular,Consolas,monospace}
+.chips-row{display:flex;flex-wrap:wrap;gap:.45rem;margin:.6rem 0 1rem}
