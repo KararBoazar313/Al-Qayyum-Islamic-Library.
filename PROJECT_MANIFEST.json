@@ -1,9 +1,9 @@
 {
   "project": "مكتبة القيّوم",
-  "version": "2026.11-community-research-integration",
+  "version": "2026.11-hadith-encyclopedia-release-candidate",
   "default_language": "ar",
   "additional_languages": 50,
-  "sql_files": 9,
+  "sql_files": 17,
   "backend_connected": false,
   "translation_complete": false,
   "owner_id_reserved": 313,
@@ -24,17 +24,17 @@
   "tests_python": "tests/test_catalog_pipeline.py",
   "tests_node": "tests/server-smoke.test.js",
   "deployment_guide": "docs/API_AND_DEPLOYMENT_AR.md",
-  "implementation_status": "all_nine_local_code_deliverables_implemented_external_deployment_pending",
+  "implementation_status": "phases_1_60_local_code_deliverables_documented; production_launch_gates_pending",
   "sql_migrations_executed": false,
   "real_catalog_records_imported": false,
   "production_deployed": false,
   "tests_python_passed": 9,
-  "tests_node_passed": 30,
+  "tests_node_passed": 41,
   "test_report": "docs/TEST_REPORT_AR.md",
-  "test_date": "2026-11-18",
-  "release_date": "2026-11-18",
+  "test_date": "2026-11-19",
+  "release_date": "2026-11-19",
   "release_label": "Qayyum Library — community moderation and research projects update",
-  "delivery_status": "local-code-package; production database and hosting pending",
+  "delivery_status": "local release candidate; external production configuration and verified source data pending",
   "phase_report": "docs/PHASES_COMPLETION_AR.md",
   "roadmap": "docs/ROADMAP_AR.md",
   "support_system": "account_scoped_support_tickets_with_staff_assignment_and_replies",
@@ -45,5 +45,19 @@
   "phase47_report": "docs/PHASE47_COMMUNITY_UI_AR.md",
   "research_projects_status": "account-scoped-api-and-ui; migration-009-pending-on-production-db",
   "phase48_report": "docs/PHASE48_RESEARCH_PROJECTS_API_AR.md",
-  "phase_status_report": "docs/PHASE_STATUS_AR.md"
+  "phase_status_report": "docs/PHASE_STATUS_AR.md",
+  "hadith_encyclopedia_ui": "account-scoped-search-and-private-collection-entry-connected-to-api",
+  "narrator_directory_ui": "account-scoped-entry-and-search; verification-requires-review",
+  "health_endpoints": [
+    "/healthz",
+    "/readyz"
+  ],
+  "container_examples": [
+    "Dockerfile.api",
+    "compose.example.yml"
+  ],
+  "real_hadith_data_imported": false,
+  "release_gate": "docs/FINAL_RELEASE_GATE_AR.md",
+  "phase_report_56_60": "docs/PHASES_56_60_AR.md",
+  "phase_status_report_56_60": "docs/PHASE_STATUS_56_60_AR.md"
 }

@@ -1,21 +1,12 @@
-# تقرير الاختبارات — 18 نوفمبر 2026
+# تقرير الاختبارات المحلي
 
-## نتائج هذه الحزمة
-- Python unit tests: **9/9 ناجحة** (`python -m unittest discover -s tests -v`).
-- Node smoke/security contract tests: **21/21 ناجحة** (`cd server && npm test`).
+تاريخ الحزمة: 2026-11-19
+
 - `node --check app.js`: ناجح.
 - `node --check server/src/index.js`: ناجح.
-- `node --check server/src/bootstrap-owner.js`: ناجح.
-- `node --check server/scripts/migrate.js`: ناجح.
-- `python -m py_compile tools/*.py`: ناجح.
-- JSON parsing للـmanifest وملف اللغات: ناجح.
-- `tools_validate_catalog.py` على قالب الاستيراد: ناجح بنيوياً (القالب فارغ ولا يحتوي سجلات كتب).
-- اختبارات التعاقد الساكنة تشمل صلاحيات المالك والإدارة، نطاق طلبات الدعم، البلاغات، القرارات، والاستئنافات.
+- `cd server && npm test`: 41 اختباراً ناجحاً، دون فشل.
+- `python -m unittest discover -s tests -p 'test_*.py'`: 9 اختبارات ناجحة.
+- `python tools_validate_catalog.py docs/book-import-template.csv`: قالب CSV سليم بنيوياً، دون سجلات بيانات.
+- `unzip -t`: فحص سلامة حزمة التسليم ناجح.
 
-## ما لم يُختبر
-- PostgreSQL غير متصل ببيئة التنفيذ؛ لم تُنفذ migrations على قاعدة فعلية ولم يجر اختبار تكامل SQL أو HTTP end-to-end.
-- لم تُشغّل خدمة Node مع PostgreSQL فعلياً، ولم تُختبر عمليات البريد أو HTTPS في بيئة منشورة.
-- لم يتوفر ماسح برمجيات خبيثة؛ الملفات تبقى pending حتى فحص خارجي.
-- لم يُجر اختبار متصفح آلي شامل؛ يلزم اختبار الواجهات على متصفحات فعلية.
-
-الاختبارات الناجحة تثبت الفحوص الساكنة واختبارات الأدوات المحددة أعلاه، ولا تعني أن الخدمة نُشرت أو أن قاعدة البيانات أو الخدمات الخارجية تعمل.
+هذه اختبارات محلية على الكود والملفات، ولا تمثل اختبار تكامل مع PostgreSQL فعلي أو فحص اختراق أو اختبار متصفح على أجهزة حقيقية.
