@@ -7,6 +7,11 @@ CREATE TABLE IF NOT EXISTS research_sections (
  title varchar(500) NOT NULL, section_kind varchar(20) NOT NULL DEFAULT 'chapter' CHECK(section_kind IN ('chapter','section','topic')),
  sort_order integer NOT NULL DEFAULT 0, body text NOT NULL DEFAULT '', created_at timestamptz NOT NULL DEFAULT now(), updated_at timestamptz NOT NULL DEFAULT now()
 );
+ALTER TABLE research_sections
+ADD COLUMN IF NOT EXISTS created_at timestamptz NOT NULL DEFAULT now();
+
+ALTER TABLE research_sections
+ADD COLUMN IF NOT EXISTS updated_at timestamptz NOT NULL DEFAULT now();
 CREATE INDEX IF NOT EXISTS idx_research_sections_project_order ON research_sections(project_id,sort_order,created_at);
 CREATE TABLE IF NOT EXISTS research_sources (
  id uuid PRIMARY KEY DEFAULT gen_random_uuid(), project_id uuid NOT NULL REFERENCES research_projects(id) ON DELETE CASCADE,
