@@ -11,5 +11,17 @@ CREATE TABLE IF NOT EXISTS research_projects (
   created_at timestamptz NOT NULL DEFAULT now(),
   updated_at timestamptz NOT NULL DEFAULT now()
 );
+ALTER TABLE research_projects
+ADD COLUMN IF NOT EXISTS user_id uuid REFERENCES users(id) ON DELETE CASCADE;
+
+UPDATE research_projects
+SET user_id = owner_user_id
+WHERE user_id IS NULL;
+
+ALTER TABLE research_projects
+ALTER COLUMN user_id SET NOT NULL;
+
+ALTER TABLE research_projects
+ADD COLUMN IF NOT EXISTS project_type varchar(40) NOT NULL DEFAULT 'research';
 CREATE INDEX IF NOT EXISTS idx_research_projects_user_updated ON research_projects(user_id,updated_at DESC);
 COMMIT;
