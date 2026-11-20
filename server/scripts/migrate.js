@@ -7,7 +7,7 @@ import {fileURLToPath} from 'node:url';
 const {Pool}=pg;
 if(!process.env.DATABASE_URL) throw new Error('DATABASE_URL is required');
 const pool=new Pool({connectionString:process.env.DATABASE_URL,ssl:process.env.PGSSL==='true'?{rejectUnauthorized:true}:undefined});
-const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../../database');
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../database');
 const files=(await fs.readdir(root)).filter(x=>/^\d{3}_.+\.sql$/.test(x)).sort();
 const client=await pool.connect();
 try {
