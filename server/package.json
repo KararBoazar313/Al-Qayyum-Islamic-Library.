@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "npm run migrate && npm run bootstrap-owner && node src/index.js",
+    "start": "npm run migrate && node src/index.js",
     "dev": "node --watch src/index.js",
     "test": "node --test ../tests/server-smoke.test.js",
     "bootstrap-owner": "node src/bootstrap-owner.js",
