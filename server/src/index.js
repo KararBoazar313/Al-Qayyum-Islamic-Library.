@@ -4,6 +4,7 @@ import multer from 'multer'; import pg from 'pg'; import bcrypt from 'bcryptjs';
 import crypto from 'node:crypto'; import fs from 'node:fs/promises'; import path from 'node:path'; import {fileURLToPath} from 'node:url'; import {z} from 'zod';
 if(process.env.NODE_ENV!=='test' && (!process.env.JWT_SECRET || process.env.JWT_SECRET.length<32)) throw new Error('JWT_SECRET must be configured with at least 32 characters');
 const app=express(), {Pool}=pg, here=path.dirname(fileURLToPath(import.meta.url));
+app.set('trust proxy', 1);
 const pool=process.env.DATABASE_URL?new Pool({connectionString:process.env.DATABASE_URL,ssl:process.env.PGSSL==='true'?{rejectUnauthorized:true}:undefined}):null;
 const storage=path.resolve(process.env.PRIVATE_STORAGE_DIR||path.join(here,'../storage/private')); const max=Number(process.env.MAX_UPLOAD_BYTES||52428800);
 app.disable('x-powered-by'); app.use(helmet({crossOriginResourcePolicy:{policy:'same-site'}})); app.use(cors({origin:(process.env.CORS_ORIGIN||'').split(',').filter(Boolean)})); app.use(express.json({limit:'1mb'}));
