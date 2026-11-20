@@ -1,10 +1,4 @@
 import 'dotenv/config';import pg from 'pg';import bcrypt from 'bcryptjs';
-console.log('ENV CHECK:', {
-  DATABASE_URL: Boolean(process.env.DATABASE_URL),
-  OWNER_EMAIL: Boolean(process.env.OWNER_EMAIL),
-  OWNER_PASSWORD: Boolean(process.env.OWNER_PASSWORD),
-  PASSWORD_LENGTH: process.env.OWNER_PASSWORD?.length ?? 0
-});
 if(!process.env.DATABASE_URL||!process.env.OWNER_EMAIL||!process.env.OWNER_PASSWORD||process.env.OWNER_PASSWORD.length<16)throw new Error('Set DATABASE_URL, OWNER_EMAIL and OWNER_PASSWORD (16+ chars) for one-time owner bootstrap.');
 const pool=new pg.Pool({connectionString:process.env.DATABASE_URL,ssl:process.env.PGSSL==='true'?{rejectUnauthorized:true}:undefined});
 try{const c=await pool.connect();try{await c.query('BEGIN');const u=await c.query("INSERT INTO qayyum.users(public_id,account_type) VALUES('313','owner') RETURNING id");const h=await bcrypt.hash(process.env.OWNER_PASSWORD,12);await c.query("INSERT INTO qayyum.auth_identities(user_id,provider,provider_subject,credential_hash,verified_at) VALUES($1,'email',$2,$3,now())",[u.rows[0].id,process.env.OWNER_EMAIL.toLowerCase(),h]);await c.query("INSERT INTO qayyum.user_profiles(user_id,display_name) VALUES($1,'مالك مكتبة القيّوم')",[u.rows[0].id]);await c.query('COMMIT');process.stdout.write('Owner account created. Remove OWNER_PASSWORD from the environment now.\n')}catch(e){await c.query('ROLLBACK');throw e}finally{c.release()}}finally{await pool.end()}
