@@ -20,7 +20,7 @@ try {
     const raw=await fs.readFile(path.join(root,filename),'utf8');
     // Migration files are also usable manually and contain their own outer BEGIN/COMMIT.
     // Remove only those wrappers here so the migration and its ledger row commit atomically.
-    const sql=raw.replace(/^\s*BEGIN\s*;?/i,'').replace(/COMMIT\s*;?\s*$/i,'');
+    const sql=raw.replace(/(^|\n)\s*BEGIN\s*;\s*/i,'$1').replace(/\n\s*COMMIT\s*;?\s*$/i,'\n');
     await client.query('BEGIN');
     try { await client.query(sql); await client.query('INSERT INTO qayyum.schema_migrations(version,filename) VALUES($1,$2)',[version,filename]); await client.query('COMMIT'); console.log(`APPLIED ${filename}`); }
     catch(error){await client.query('ROLLBACK');throw new Error(`Migration ${filename} failed: ${error.message}`,{cause:error})}

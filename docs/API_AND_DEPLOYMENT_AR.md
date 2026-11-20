@@ -7,17 +7,15 @@
 - HTTPS، نسخ احتياطية، ومخزن ملفات خاص خارج مجلد الويب.
 
 ## إعداد قاعدة البيانات
-أنشئ قاعدة البيانات والمستخدم يدوياً، ثم نفّذ الملفات بالترتيب من مجلد المشروع:
+أنشئ قاعدة بيانات PostgreSQL 16 ومستخدم تطبيق مخصصاً بأقل صلاحيات لازمة، ثم من مجلد `server/` شغّل أداة الترحيل التي تطبق ملفات `database/001` إلى `database/012` بالترتيب وتسجل كل ترحيل في `qayyum.schema_migrations`:
 
 ```bash
-psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f database/001_core_schema.sql
-psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f database/002_platform_modules.sql
-psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f database/003_catalog_import.sql
-psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f database/004_security_community_backups.sql
-psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f database/005_complete_catalog_workflows.sql
+cd server
+npm install
+npm run migrate
 ```
 
-لا تنفّذها على قاعدة بيانات فيها بيانات قبل أخذ نسخة احتياطية ومراجعة خطة الترحيل.
+تستخدم أداة الترحيل معاملة مستقلة لكل ملف، ولا تكرر ترحيلاً مسجلاً. خذ نسخة احتياطية قبل أي ترحيل على قاعدة تحتوي بيانات. لا تشغّل ملفات SQL يدوياً بالتوازي مع الأداة.
 
 ## تشغيل الخادم
 
@@ -26,6 +24,7 @@ cd server
 cp .env.example .env
 # عدّل DATABASE_URL وJWT_SECRET وCORS_ORIGIN وPRIVATE_STORAGE_DIR
 npm install
+npm run migrate
 npm start
 ```
 
@@ -61,7 +60,7 @@ npm start
 GitHub Pages مناسب لملفات `index.html`, `styles.css`, `app.js` فقط. لا يتيح تشغيل API أو PostgreSQL أو تخزين ملفات خاصة. انشر مجلد الواجهة على Pages، وانشر `server/` على استضافة خادم منفصلة، ثم أضف عنوان API إلى إعداد الواجهة مع CORS محدود. لا تضع بيانات الاتصال أو مفاتيح JWT داخل JavaScript للمتصفح.
 
 ## ربط واجهة GitHub Pages بالخادم
-بعد نشر API على عنوان HTTPS ثابت، غيّر قيمة الوسم التالي في `index.html` إلى عنوان الخادم (من دون `/` أخيرة):
+بعد نشر API على عنوان HTTPS ثابت، غيّر قيمة الوسم التالي في `index.html` إلى عنوان الخادم (من دون `/` أخيرة). هذا الوسم غير موجود في النسخة المصدر ويجب إضافته قبل أن تتصل الواجهة بالخادم:
 
 ```html
 <meta name="qayyum-api-base" content="https://api.example.org">

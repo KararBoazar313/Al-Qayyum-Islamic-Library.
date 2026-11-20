@@ -29,12 +29,12 @@
   "real_catalog_records_imported": false,
   "production_deployed": false,
   "tests_python_passed": 9,
-  "tests_node_passed": 41,
-  "test_report": "docs/TEST_REPORT_AR.md",
-  "test_date": "2026-11-19",
+  "tests_node_passed": 44,
+  "test_report": "docs/AUDIT_REPORT_AR.md",
+  "test_date": "2026-11-20",
   "release_date": "2026-11-18",
   "release_label": "Qayyum Library — grouped phases 51–60 software integration",
-  "delivery_status": "local-code-package; production database and hosting pending",
+  "delivery_status": "local-code-package; static tests pass; PostgreSQL integration and production deployment pending",
   "phase_report": "docs/PHASE_STATUS_AR.md",
   "roadmap": "docs/ROADMAP_AR.md",
   "support_system": "account_scoped_support_tickets_with_staff_assignment_and_replies",
@@ -51,5 +51,8 @@
   "hadith_search_status": "authenticated search and detail UI/API; staff curation endpoints; corpus records still need sourced import",
   "rijal_search_status": "authenticated narrator search and detail UI/API; attributed assessment endpoints; verified biographies still need sourced import",
   "manuscript_catalogue_status": "migration 012, authenticated search, admin submission, owner review and audit logging; actual catalogue import pending",
-  "phase_51_60_report": "docs/PHASES_51_60_GROUPED_AR.md"
+  "phase_51_60_report": "docs/PHASES_51_60_GROUPED_AR.md",
+  "migration_runner": "server/scripts/migrate.js; migrations 001-012; transactional ledger",
+  "owner_bootstrap": "server/src/bootstrap-owner.js; assigns reserved public_id 313",
+  "api_frontend_connection": "requires adding qayyum-api-base meta tag to index.html after API deployment"
 }
