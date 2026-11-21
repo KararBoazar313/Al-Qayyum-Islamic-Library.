@@ -7,7 +7,15 @@ const app=express(), {Pool}=pg, here=path.dirname(fileURLToPath(import.meta.url)
 app.set('trust proxy', 1);
 const pool=process.env.DATABASE_URL?new Pool({connectionString:process.env.DATABASE_URL,ssl:process.env.PGSSL==='true'?{rejectUnauthorized:true}:undefined}):null;
 const storage=path.resolve(process.env.PRIVATE_STORAGE_DIR||path.join(here,'../storage/private')); const max=Number(process.env.MAX_UPLOAD_BYTES||52428800);
-app.disable('x-powered-by'); app.use(helmet({crossOriginResourcePolicy:{policy:'same-site'}})); app.use(cors({origin:(process.env.CORS_ORIGIN||'').split(',').filter(Boolean)})); app.use(express.json({limit:'1mb'}));
+app.disable('x-powered-by'); app.use(helmet({crossOriginResourcePolicy:{policy:'same-site'}})); app.use(cors({
+  origin: (process.env.CORS_ORIGIN || '')
+    .split(',')
+    .map(x => x.trim())
+    .filter(Boolean),
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  optionsSuccessStatus: 204
+})); app.use(express.json({limit:'1mb'}));
 app.use('/api',rateLimit({windowMs:60000,limit:100,standardHeaders:true,legacyHeaders:false}));
 const loginRateLimit=rateLimit({windowMs:15*60*1000,limit:10,standardHeaders:true,legacyHeaders:false,message:{error:'too_many_auth_attempts'}});
 const registerRateLimit=rateLimit({windowMs:60*60*1000,limit:5,standardHeaders:true,legacyHeaders:false,message:{error:'registration_rate_limited'}});
