@@ -159,7 +159,40 @@ document.addEventListener('submit',async e=>{
  if(e.target.id==='communityPostForm'){e.preventDefault();const id=e.target.dataset.spaceId;try{await apiRequest(`/api/community/spaces/${id}/posts`,{method:'POST',body:JSON.stringify({body:$('#communityPostBody').value.trim()})});toast('وصل المنشور إلى قائمة المراجعة.');e.target.reset()}catch(err){toast(`تعذر نشر المحتوى: ${err.message}`)}}
  if(e.target.id==='assistantForm'){e.preventDefault();if(!$('#assistantScope').value){toast('اختر نطاق المصادر أولاً.');return}toast('تم تجهيز السؤال. المساعد يحتاج ربط خدمة الذكاء الاصطناعي والمصادر.');}
 
- if(e.target.id==='loginForm'){e.preventDefault();try{const d=await apiRequest('/api/auth/login',{method:'POST',body:JSON.stringify({email:$('#loginEmail').value,password:$('#loginPassword').value})});sessionStorage.setItem('qayyum-session-token',d.token);await refreshSession();$('#authStatus').textContent=currentSession?.isOwner?'تم الدخول بحساب المالك.':currentSession?.isAdmin?'تم الدخول بحساب إداري مفعّل.':'تم الدخول بحساب مستخدم عادي.';toast('تم تسجيل الدخول وتحديث صلاحيات الحساب.')}catch(err){$('#authStatus').textContent=err.message;toast(`تعذر الدخول: ${err.message}`)}}
+ if(e.target.id==='loginForm'){
+  e.preventDefault();
+  try{
+    const d=await apiRequest('/api/auth/login',{
+      method:'POST',
+      body:JSON.stringify({
+        email:$('#loginEmail').value,
+        password:$('#loginPassword').value
+      })
+    });
+    sessionStorage.setItem('qayyum-session-token',d.token);
+    await refreshSession();
+
+    if(!currentSession) throw new Error('تعذر التحقق من الجلسة');
+
+    $('#authStatus').textContent=currentSession.isOwner
+      ?'تم الدخول بحساب المالك.'
+      :currentSession.isAdmin
+      ?'تم الدخول بحساب إداري مفعّل.'
+      :'تم الدخول بحساب مستخدم عادي.';
+
+    toast('تم تسجيل الدخول بنجاح.');
+
+    location.hash=currentSession.isOwner
+      ?'#dashboard'
+      :currentSession.isAdmin
+      ?'#admin'
+      :'#home';
+
+  }catch(err){
+    $('#authStatus').textContent=err.message;
+    toast(`تعذر الدخول: ${err.message}`);
+  }
+}
  if(e.target.id==='registerForm'){e.preventDefault();try{const d=await apiRequest('/api/auth/register',{method:'POST',body:JSON.stringify({email:$('#registerEmail').value,password:$('#registerPassword').value,displayName:$('#registerName').value})});sessionStorage.setItem('qayyum-session-token',d.token);await refreshSession();$('#authStatus').textContent='تم إنشاء حساب مستخدم عادي. لا تظهر أدوات الإدارة إلا بعد منح المالك الصلاحية.';toast('تم إنشاء الحساب.')}catch(err){toast(`تعذر إنشاء الحساب: ${err.message}`)}}
 });
 document.addEventListener('click',async e=>{const b=e.target.closest('[data-action]');if(!b)return;const a=b.dataset.action;
