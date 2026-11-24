@@ -33,3 +33,14 @@ jobs:
           else
             echo "MIGRATION_LEDGER_MISSING"
           fi
+
+      - name: Probe deployed API health and readiness
+        run: |
+          for endpoint in health ready; do
+            url="https://al-qayyum-islamic-library.enzonic.dev/api/$endpoint"
+            echo "Checking $url"
+            code="$(curl -sS --max-time 20 -o "/tmp/qayyum-$endpoint.json" -w "%{http_code}" "$url" || true)"
+            echo "HTTP_STATUS_$endpoint=$code"
+            cat "/tmp/qayyum-$endpoint.json" 2>/dev/null || true
+            echo
+          done
