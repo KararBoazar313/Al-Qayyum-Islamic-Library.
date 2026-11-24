@@ -1,10 +1,13 @@
-name: Test Database Connections
+name: Inspect Neon Database
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/test-db-connections.yml"
 
 jobs:
-  test:
+  inspect-neon:
     runs-on: ubuntu-latest
     steps:
       - name: Install PostgreSQL client
@@ -12,16 +15,21 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y postgresql-client
 
-      - name: Test Neon
+      - name: Inspect Neon connection and existing schema (read-only)
         env:
           DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}
         run: |
+          test -n "$DATABASE_URL"
           psql "$DATABASE_URL" -X -v ON_ERROR_STOP=1 \
-            -c "SELECT 'NEON_CONNECTED' AS status, current_database();"
+            -c "SELECT current_database() AS database_name, current_setting('server_version') AS postgres_version;" \
+            -c "SELECT nspname AS schema_name FROM pg_namespace WHERE nspname = 'qayyum';" \
+            -c "SELECT schemaname, tablename FROM pg_tables WHERE schemaname = 'qayyum' ORDER BY tablename;"
 
-      - name: Test Supabase
-        env:
-          DATABASE_URL: ${{ secrets.SUPABASE_DATABASE_URL }}
-        run: |
-          psql "$DATABASE_URL" -X -v ON_ERROR_STOP=1 \
-            -c "SELECT 'SUPABASE_CONNECTED' AS status, current_database();"
+          HAS_LEDGER="$(psql "$DATABASE_URL" -X -At -v ON_ERROR_STOP=1 -c "SELECT to_regclass('qayyum.schema_migrations') IS NOT NULL;")"
+          if [ "$HAS_LEDGER" = "t" ]; then
+            echo "MIGRATION_LEDGER_PRESENT"
+            psql "$DATABASE_URL" -X -v ON_ERROR_STOP=1 \
+              -c "SELECT version, filename, applied_at FROM qayyum.schema_migrations ORDER BY version;"
+          else
+            echo "MIGRATION_LEDGER_MISSING"
+          fi
