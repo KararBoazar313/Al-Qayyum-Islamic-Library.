@@ -66,3 +66,20 @@ test('migration runner removes SQL transaction wrappers while keeping ledger wri
 test('login and registration have dedicated rate limits beyond the global API limiter',()=>{const s=fs.readFileSync(path.join(root,'server/src/index.js'),'utf8');assert.match(s,/const loginRateLimit=rateLimit\(\{windowMs:15\*60\*1000,limit:10/);assert.match(s,/const registerRateLimit=rateLimit\(\{windowMs:60\*60\*1000,limit:5/);assert.match(s,/api\/auth\/login',loginRateLimit,safe/);assert.match(s,/api\/auth\/register',registerRateLimit,safe/)});
 test('production file uploads require durable private storage and readiness checks it',()=>{const s=fs.readFileSync(path.join(root,'server/src/index.js'),'utf8');assert.match(s,/const durableStorage=objectStorage\\.mode==='s3'\\|\\|process\\.env\\.PRIVATE_STORAGE_PERSISTENT==='true'/);assert.match(s,/api\\/ready/);assert.match(s,/NODE_ENV==='production'&&!durableStorage/);});
 test('account UI exposes a working logout action',()=>{const s=fs.readFileSync(path.join(root,'app.js'),'utf8');assert.match(s,/data-action="logout"/);assert.match(s,/sessionStorage\\.removeItem\\('qayyum-session-token'\\)/);});
+
+test('private storage supports persistent private Rapidfile objects',()=>{
+  const storage=fs.readFileSync(path.join(root,'server/src/private-object-storage.js'),'utf8');
+  const api=fs.readFileSync(path.join(root,'server/src/index.js'),'utf8');
+  assert.ok(storage.includes('RAPIDFILE_SECRET_KEY'));
+  assert.ok(storage.includes("url.searchParams.set('acl', 'private')"));
+  assert.ok(storage.includes('/signed-url'));
+  assert.ok(storage.includes('Readable.fromWeb'));
+  assert.ok(api.includes("['s3','rapidfile'].includes(objectStorage.mode)"));
+  assert.ok(api.includes('const storageKey=(await objectStorage.put'));
+});
+test('preflight requires a durable private storage provider instead of assuming local disk persists',()=>{
+  const s=fs.readFileSync(path.join(root,'server/scripts/preflight.js'),'utf8');
+  assert.ok(s.includes('Durable private storage provider configured'));
+  assert.ok(s.includes('hasRapidfile'));
+  assert.ok(s.includes('PRIVATE_STORAGE_PERSISTENT'));
+});
