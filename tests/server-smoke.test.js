@@ -65,7 +65,7 @@ test('migration runner removes SQL transaction wrappers while keeping ledger wri
 
 test('login and registration have dedicated rate limits beyond the global API limiter',()=>{const s=fs.readFileSync(path.join(root,'server/src/index.js'),'utf8');assert.match(s,/const loginRateLimit=rateLimit\(\{windowMs:15\*60\*1000,limit:10/);assert.match(s,/const registerRateLimit=rateLimit\(\{windowMs:60\*60\*1000,limit:5/);assert.match(s,/api\/auth\/login',loginRateLimit,safe/);assert.match(s,/api\/auth\/register',registerRateLimit,safe/)});
 test('production file uploads require durable private storage and readiness checks it',()=>{const s=fs.readFileSync(path.join(root,'server/src/index.js'),'utf8');assert.ok(s.includes("const durableStorage=['s3','rapidfile'].includes(objectStorage.mode)||process.env.PRIVATE_STORAGE_PERSISTENT==='true';"));assert.ok(s.includes('/api/ready'));assert.ok(s.includes("process.env.NODE_ENV==='production'&&!durableStorage"));});
-test('account UI exposes a working logout action',()=>{const s=fs.readFileSync(path.join(root,'app.js'),'utf8');assert.match(s,/data-action="logout"/);assert.match(s,/sessionStorage\\.removeItem\\('qayyum-session-token'\\)/);});
+test('account UI exposes a working logout action',()=>{const s=fs.readFileSync(path.join(root,'app.js'),'utf8');assert.ok(s.includes('data-action="logout"'));assert.ok(s.includes("sessionStorage.removeItem('qayyum-session-token')"));});
 
 test('private storage supports persistent private Rapidfile objects',()=>{
   const storage=fs.readFileSync(path.join(root,'server/src/private-object-storage.js'),'utf8');
