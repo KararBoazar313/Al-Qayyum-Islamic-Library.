@@ -8,15 +8,18 @@ const app=express(), {Pool}=pg, here=path.dirname(fileURLToPath(import.meta.url)
 app.set('trust proxy', 1);
 const pool=process.env.DATABASE_URL?new Pool({connectionString:process.env.DATABASE_URL,ssl:process.env.PGSSL==='true'?{rejectUnauthorized:true}:undefined,connectionTimeoutMillis:10000,idleTimeoutMillis:30000,keepAlive:true,max:10}):null;
 const storage=path.resolve(process.env.PRIVATE_STORAGE_DIR||path.join(here,'../storage/private')); const objectStorage=createPrivateObjectStorage({storageDir:storage}); const max=Number(process.env.MAX_UPLOAD_BYTES||52428800);
-app.disable('x-powered-by'); app.use(helmet({crossOriginResourcePolicy:{policy:'same-site'}})); app.use(cors({
-  origin: (process.env.CORS_ORIGIN || '')
-    .split(',')
-    .map(x => x.trim())
-    .filter(Boolean),
+app.disable('x-powered-by'); app.use(helmet({crossOriginResourcePolicy:{policy:'same-site'}}));
+const allowedOrigins = new Set([
+  'https://kararboazar313.github.io',
+  ...(process.env.CORS_ORIGIN || '').split(',').map(x => x.trim()).filter(Boolean)
+]);
+app.use(cors({
+  origin: (origin, callback) => callback(null, !origin || allowedOrigins.has(origin)),
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   optionsSuccessStatus: 204
-})); app.use(express.json({limit:'1mb'}));
+}));
+app.use(express.json({limit:'1mb'}));
 app.use('/api',rateLimit({windowMs:60000,limit:100,standardHeaders:true,legacyHeaders:false}));
 const loginRateLimit=rateLimit({windowMs:15*60*1000,limit:10,standardHeaders:true,legacyHeaders:false,message:{error:'too_many_auth_attempts'}});
 const registerRateLimit=rateLimit({windowMs:60*60*1000,limit:5,standardHeaders:true,legacyHeaders:false,message:{error:'registration_rate_limited'}});
