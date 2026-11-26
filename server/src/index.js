@@ -8,7 +8,7 @@ import {getAuth} from 'firebase-admin/auth';
 if(process.env.NODE_ENV!=='test' && (!process.env.JWT_SECRET || process.env.JWT_SECRET.length<32)) throw new Error('JWT_SECRET must be configured with at least 32 characters');
 const app=express(), {Pool}=pg, here=path.dirname(fileURLToPath(import.meta.url));
 app.set('trust proxy', 1);
-const pool=process.env.DATABASE_URL?new Pool({connectionString:process.env.DATABASE_URL,ssl:process.env.PGSSL==='true'?{rejectUnauthorized:true}:undefined,connectionTimeoutMillis:10000,idleTimeoutMillis:30000,keepAlive:true,max:10}):null;
+const databaseUrl=process.env.DATABASE_URL?new URL(process.env.DATABASE_URL):null; if(databaseUrl)for(const key of ['sslmode','sslrootcert','sslcert','sslkey'])databaseUrl.searchParams.delete(key); const pool=databaseUrl?new Pool({connectionString:databaseUrl.toString(),ssl:process.env.PGSSL==='true'?{ca:process.env.SUPABASE_CA_CERT||undefined,rejectUnauthorized:true}:undefined,connectionTimeoutMillis:10000,idleTimeoutMillis:30000,keepAlive:true,max:10}):null;
 const storage=path.resolve(process.env.PRIVATE_STORAGE_DIR||path.join(here,'../storage/private')); const objectStorage=createPrivateObjectStorage({storageDir:storage}); const max=Number(process.env.MAX_UPLOAD_BYTES||52428800);
 app.disable('x-powered-by'); app.use(helmet({crossOriginResourcePolicy:{policy:'same-site'}}));
 const allowedOrigins = new Set([
