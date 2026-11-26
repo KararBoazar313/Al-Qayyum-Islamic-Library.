@@ -5,7 +5,7 @@ COPY server/package.json ./package.json
 RUN npm install --omit=dev --no-audit --no-fund
 COPY server/src ./src
 COPY server/scripts ./scripts
-COPY database /database
+COPY database ./database
 RUN mkdir -p /private-storage && chown -R node:node /app /private-storage
 USER node
 EXPOSE 8787
