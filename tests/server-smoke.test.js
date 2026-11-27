@@ -1,5 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';
 const root=path.resolve(import.meta.dirname||'.','..');
+test('owner bootstrap verifies Supabase TLS with the configured CA certificate',()=>{const s=fs.readFileSync(path.join(root,'server/src/bootstrap-owner.js'),'utf8');assert.match(s,/SUPABASE_CA_CERT/);assert.match(s,/rejectUnauthorized:true/);assert.match(s,/sslmode/)});
 test('server enforces JWT secret configuration',()=>{const s=fs.readFileSync(path.join(root,'server/src/index.js'),'utf8');assert.match(s,/JWT_SECRET.*length<32/)});
 test('file reads require the latest rights review to approve access',()=>{const s=fs.readFileSync(path.join(root,'server/src/index.js'),'utf8');assert.match(s,/rr\.id FROM qayyum\.rights_reviews rr WHERE rr\.file_id=f\.id ORDER BY rr\.reviewed_at DESC NULLS LAST,rr\.id DESC LIMIT 1/);assert.match(s,/file_must_pass_malware_review_before_access_approval/);assert.match(s,/api\/admin\/files\/review-queue/)});
 test('admin file review UI exposes quarantine queue and requires scan evidence',()=>{const ui=fs.readFileSync(path.join(root,'app.js'),'utf8');assert.match(ui,/api\/admin\/files\/review-queue/);assert.match(ui,/file-review-save/);assert.match(ui,/فُحص هذا الملف فعلياً/)});
