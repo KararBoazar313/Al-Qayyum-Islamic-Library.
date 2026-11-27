@@ -43,3 +43,12 @@ jobs:
           cat /tmp/qayyum-ready.json
           jq -e '.status == "ready" and .database == true and .privateStorageDurable == true' \
             /tmp/qayyum-ready.json
+
+          echo "Checking browser CORS for the GitHub Pages frontend"
+          curl -sS -D /tmp/qayyum-cors-headers -o /dev/null -X OPTIONS \
+            -H "Origin: https://kararboazar313.github.io" \
+            -H "Access-Control-Request-Method: POST" \
+            -H "Access-Control-Request-Headers: authorization,content-type" \
+            "$base/api/auth/google"
+          grep -iq '^access-control-allow-origin: https://kararboazar313.github.io' /tmp/qayyum-cors-headers
+          grep -iq '^access-control-allow-methods:.*POST' /tmp/qayyum-cors-headers
