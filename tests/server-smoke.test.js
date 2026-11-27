@@ -88,3 +88,5 @@ test('preflight requires a durable private storage provider instead of assuming 
   assert.ok(s.includes('hasRapidfile'));
   assert.ok(s.includes('PRIVATE_STORAGE_PERSISTENT'));
 });
+
+test('owner dashboard statistics are served from live database counts behind owner-only authorization',()=>{const s=fs.readFileSync(path.join(root,'server/src/index.js'),'utf8');const ui=fs.readFileSync(path.join(root,'app.js'),'utf8');assert.match(s,/api\/admin\/dashboard\/stats',auth,ownerOnly/);assert.match(s,/FROM qayyum\.works/);assert.match(s,/FROM qayyum\.users WHERE account_type<>'owner'/);assert.match(s,/FROM qayyum\.community_spaces/);assert.match(ui,/loadOwnerDashboardStats/);assert.match(ui,/apiRequest\('\/api\/admin\/dashboard\/stats'\)/)});
