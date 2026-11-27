@@ -52,3 +52,10 @@ jobs:
             "$base/api/auth/google"
           grep -iq '^access-control-allow-origin: https://kararboazar313.github.io' /tmp/qayyum-cors-headers
           grep -iq '^access-control-allow-methods:.*POST' /tmp/qayyum-cors-headers
+
+          echo "Checking file-review routes are protected by authentication"
+          queue_status=$(curl -sS -o /tmp/qayyum-queue-unauth.json -w '%{http_code}' "$base/api/admin/files/review-queue")
+          test "$queue_status" = "401"
+          review_status=$(curl -sS -o /tmp/qayyum-review-unauth.json -w '%{http_code}' -X PUT -H "Content-Type: application/json" -d '{}' "$base/api/admin/files/00000000-0000-0000-0000-000000000000/review")
+          test "$review_status" = "401"
+
