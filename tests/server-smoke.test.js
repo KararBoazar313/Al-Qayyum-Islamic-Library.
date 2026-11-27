@@ -1,6 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';
 const root=path.resolve(import.meta.dirname||'.','..');
 test('server enforces JWT secret configuration',()=>{const s=fs.readFileSync(path.join(root,'server/src/index.js'),'utf8');assert.match(s,/JWT_SECRET.*length<32/)});
+test('file reads require the latest rights review to approve access',()=>{const s=fs.readFileSync(path.join(root,'server/src/index.js'),'utf8');assert.match(s,/rr\.id FROM qayyum\.rights_reviews rr WHERE rr\.file_id=f\.id ORDER BY rr\.reviewed_at DESC NULLS FIRST,rr\.id DESC LIMIT 1/);assert.match(s,/file_must_pass_malware_review_before_access_approval/);assert.match(s,/api\/admin\/files\/review-queue/)});
 test('private uploads are quarantined and rights default to hold',()=>{const s=fs.readFileSync(path.join(root,'server/src/index.js'),'utf8');assert.match(s,/PRIVATE_STORAGE_DIR/);assert.match(s,/unknown','unknown','hold/);assert.match(s,/private_file_objects/)});
 test('notes are owner scoped and private by default',()=>{const s=fs.readFileSync(path.join(root,'server/src/index.js'),'utf8');assert.match(s,/WHERE user_id=\$1/);assert.match(s,/visibility[\s\S]*private/)});
 
