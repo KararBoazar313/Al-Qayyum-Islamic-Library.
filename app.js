@@ -172,7 +172,8 @@ document.addEventListener('submit',async e=>{
       method:'POST',
       body:JSON.stringify({
         email:$('#loginEmail').value,
-        password:$('#loginPassword').value
+        password:$('#loginPassword').value,
+        rememberMe:$('#rememberMe')?.checked===true
       })
     });
     storeSessionToken(d.token,$('#rememberMe')?.checked===true);
