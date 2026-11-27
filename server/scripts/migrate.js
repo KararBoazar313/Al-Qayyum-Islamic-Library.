@@ -44,37 +44,37 @@ try {
   const seenVersions=new Map();
   for(const filename of files){
     if(skippedLegacy.has(filename)){
-      console.log(`SKIP legacy/unintegrated migration ${filename}`);
+      console.log(\`SKIP legacy/unintegrated migration \${filename}\`);
       continue;
     }
 
     const version=filename.slice(0,3);
     const previous=seenVersions.get(version);
-    if(previous) throw new Error(`Duplicate migration version ${version}: ${previous} and ${filename}`);
+    if(previous) throw new Error(\`Duplicate migration version \${version}: \${previous} and \${filename}\`);
     seenVersions.set(version,filename);
 
     const done=await client.query('SELECT 1 FROM qayyum.schema_migrations WHERE version=$1',[version]);
     if(done.rowCount){
-      console.log(`SKIP applied migration ${filename}`);
+      console.log(\`SKIP applied migration \${filename}\`);
       continue;
     }
 
     const raw=await fs.readFile(path.join(root,filename),'utf8');
     // Migration files are also usable manually and contain their own outer BEGIN/COMMIT.
     // Remove only those wrappers here so the migration and its ledger row commit atomically.
-    const sql=raw.replace(/(^|\\n)\\s*BEGIN\\s*;\\s*/i,'$1').replace(/\\n\\s*COMMIT\\s*;?\\s*$/i,'\\n');
+    const sql=raw.replace(/(^|\n)\s*BEGIN\s*;\s*/i,'$1').replace(/\n\s*COMMIT\s*;?\s*$/i,'\n');
     await client.query('BEGIN');
     try {
       await client.query(sql);
       await client.query('INSERT INTO qayyum.schema_migrations(version,filename) VALUES($1,$2)',[version,filename]);
       await client.query('COMMIT');
-      console.log(`APPLIED ${filename}`);
+      console.log(\`APPLIED \${filename}\`);
     } catch(error) {
       await client.query('ROLLBACK');
-      throw new Error(`Migration ${filename} failed: ${error.message}`,{cause:error});
+      throw new Error(\`Migration \${filename} failed: \${error.message}\`,{cause:error});
     }
   }
-  console.log(`Migration check complete (${files.length} files discovered).`);
+  console.log(\`Migration check complete (\${files.length} files discovered).\`);
 } finally {
   client.release();
   await pool.end();
