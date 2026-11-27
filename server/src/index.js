@@ -160,6 +160,16 @@ app.patch('/api/admin/community/spaces/:id/members/:userId',auth,safe(async(req,
 app.get('/api/admin/community/spaces/:id/posts/pending',auth,safe(async(req,res)=>{ready();const id=z.string().uuid().parse(req.params.id);const own=req.user.account_type==='owner';const access=await pool.query(`SELECT 1 FROM qayyum.community_spaces s WHERE s.id=$1 AND ($2::boolean OR EXISTS(SELECT 1 FROM qayyum.community_members m WHERE m.space_id=s.id AND m.user_id=$3 AND m.member_role IN ('manager','moderator') AND m.membership_status='active'))`,[id,own,req.user.sub]);if(!access.rowCount)return res.status(404).json({error:'space_not_found_or_not_moderated'});const q=await pool.query(`SELECT p.id,p.body,p.author_user_id,p.created_at,COALESCE(u.display_name,'عضو') AS author FROM qayyum.community_posts p LEFT JOIN qayyum.user_profiles u ON u.user_id=p.author_user_id WHERE p.space_id=$1 AND p.moderation_status='pending' ORDER BY p.created_at`,[id]);res.json({items:q.rows})}));
 app.patch('/api/admin/community/posts/:id/moderation',auth,safe(async(req,res)=>{ready();const id=z.string().uuid().parse(req.params.id);const v=z.object({status:z.enum(['visible','held','removed']),note:z.string().trim().min(3).max(2000)}).parse(req.body);const own=req.user.account_type==='owner';const q=await pool.query(`UPDATE qayyum.community_posts p SET moderation_status=$2 WHERE p.id=$1 AND p.moderation_status='pending' AND ($3::boolean OR EXISTS(SELECT 1 FROM qayyum.community_members m WHERE m.space_id=p.space_id AND m.user_id=$4 AND m.member_role IN ('manager','moderator') AND m.membership_status='active')) RETURNING p.id,p.space_id,p.moderation_status`,[id,v.status,own,req.user.sub]);if(!q.rowCount)return res.status(404).json({error:'pending_post_not_found_or_not_moderated'});await pool.query("INSERT INTO qayyum.audit_logs(actor_user_id,action_code,target_kind,target_id,details) VALUES($1,'community_post_moderated','community_post',$2,$3)",[req.user.sub,id,JSON.stringify({status:v.status,note:v.note})]);res.json(q.rows[0])}));
 
+
+app.get('/api/admin/dashboard/stats',auth,ownerOnly,safe(async(_req,res)=>{ready();const q=await pool.query(`
+SELECT
+ (SELECT COUNT(*)::int FROM qayyum.works) AS books,
+ (SELECT COUNT(*)::int FROM qayyum.users WHERE account_type<>'owner') AS members,
+ (SELECT COUNT(*)::int FROM qayyum.community_spaces) AS spaces,
+ ((SELECT COUNT(*) FROM qayyum.owner_approval_queue WHERE status='pending')+
+  (SELECT COUNT(*) FROM qayyum.review_tasks WHERE status='pending'))::int AS pending_reviews
+`);res.json(q.rows[0]||{books:0,members:0,spaces:0,pending_reviews:0})}));
+
 app.use((err,req,res,_next)=>{if(err instanceof z.ZodError)return res.status(400).json({error:'validation_error',details:err.issues});const status=err.status|| (err instanceof multer.MulterError?400:500);if(status>=500)console.error('[API_ERROR]',JSON.stringify({method:req.method,path:req.path,name:err.name||'Error',code:err.code||null,message:err.message||'Unknown error'}));res.status(status).json({error:status===500?'internal_error':err.message})});
 const port=Number(process.env.PORT||8787); if(process.env.NODE_ENV!=='test')app.listen(port,()=>console.log(`Qayyum API listening on ${port}`));
 export {app,pool};
