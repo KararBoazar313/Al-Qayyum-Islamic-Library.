@@ -59,3 +59,12 @@ jobs:
           review_status=$(curl -sS -o /tmp/qayyum-review-unauth.json -w '%{http_code}' -X PUT -H "Content-Type: application/json" -d '{}' "$base/api/admin/files/00000000-0000-0000-0000-000000000000/review")
           test "$review_status" = "401"
 
+          echo "Checking Firebase Google-token verification is configured"
+          dummy_token=$(printf 'x%.0s' {1..128})
+          google_status=$(curl -sS -o /tmp/qayyum-google-auth.json -w '%{http_code}' -X POST \
+            -H "Content-Type: application/json" \
+            -d "{\"idToken\":\"$dummy_token\"}" \
+            "$base/api/auth/google")
+          test "$google_status" = "401"
+
+
