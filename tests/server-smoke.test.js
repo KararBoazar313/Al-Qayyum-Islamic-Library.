@@ -122,3 +122,18 @@ test('sources, publishers and translations pages search only approved catalog re
 test('global search submits the real catalog form instead of only copying the query',()=>{const ui=fs.readFileSync(path.join(root,'app.js'),'utf8');assert.match(ui,/catalogForm.*requestSubmit/s);assert.doesNotMatch(ui,/النتائج الحقيقية تحتاج ربط قاعدة البيانات/)});
 
 test('mapped research, digital reading and staff pages trigger their corresponding data loaders',()=>{const ui=fs.readFileSync(path.join(root,'app.js'),'utf8');assert.match(ui,/key==='research'\|\|key==='projects'/);assert.match(ui,/key==='reader'\|\|key==='digital'/);assert.match(ui,/key==='dashboard'\|\|key==='staff'/)});
+
+
+test('owner site identity can be read publicly, edited only by owner, and uses stored image objects',()=>{
+ const api=fs.readFileSync(path.join(root,'server/src/index.js'),'utf8');
+ const ui=fs.readFileSync(path.join(root,'app.js'),'utf8');
+ const migration=fs.readFileSync(path.join(root,'database/021_site_identity.sql'),'utf8');
+ for(const route of ["/api/site/identity'","/api/site/identity/:kind","/api/admin/site-identity'","/api/admin/site-identity/:kind"])assert.ok(api.includes(route),`missing ${route}`);
+ assert.match(api,/app\.put\('\/api\/admin\/site-identity',auth,ownerOnly/);
+ assert.match(api,/app\.post\('\/api\/admin\/site-identity\/:kind',auth,ownerOnly,profileUpload\.single\('image'\)/);
+ assert.match(api,/site_identity_image_updated/);
+ assert.match(ui,/loadOwnerSiteIdentity/);
+ assert.match(ui,/site-identity-save/);
+ assert.match(ui,/site-identity-image-upload/);
+ assert.match(migration,/CREATE TABLE IF NOT EXISTS qayyum\.site_identity/);
+});
