@@ -170,6 +170,7 @@ SELECT
   (SELECT COUNT(*) FROM qayyum.review_tasks WHERE status='pending'))::int AS pending_reviews
 `);res.json(q.rows[0]||{books:0,members:0,spaces:0,pending_reviews:0})}));
 
+app.get('/api/admin/audit-logs',auth,ownerOnly,safe(async(req,res)=>{ready();const limit=Math.min(Math.max(Number(req.query.limit)||100,1),200);const q=await pool.query(`SELECT a.id,a.action_code,a.target_kind,a.target_id,a.details,a.created_at,COALESCE(p.display_name,'حساب إداري') AS actor_name FROM qayyum.audit_logs a LEFT JOIN qayyum.user_profiles p ON p.user_id=a.actor_user_id ORDER BY a.created_at DESC LIMIT $1`,[limit]);res.json({items:q.rows})}));
 app.use((err,req,res,_next)=>{if(err instanceof z.ZodError)return res.status(400).json({error:'validation_error',details:err.issues});const status=err.status|| (err instanceof multer.MulterError?400:500);if(status>=500)console.error('[API_ERROR]',JSON.stringify({method:req.method,path:req.path,name:err.name||'Error',code:err.code||null,message:err.message||'Unknown error'}));res.status(status).json({error:status===500?'internal_error':err.message})});
 const port=Number(process.env.PORT||8787); if(process.env.NODE_ENV!=='test')app.listen(port,()=>console.log(`Qayyum API listening on ${port}`));
 export {app,pool};
