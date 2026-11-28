@@ -363,3 +363,9 @@ input:focus,select:focus,textarea:focus{outline:2px solid #0b806522;border-color
 .profile-fields{min-width:0}
 .profile-fields .field textarea{width:100%;resize:vertical}
 @media(max-width:680px){.profile-layout{grid-template-columns:1fr}.profile-avatar-panel{max-width:320px;margin:auto;width:100%}}
+
+/* Account settings and owner backup controls */
+#ownerBackupsPanel .form-row{align-items:end;gap:12px;flex-wrap:wrap}
+#ownerBackupsPanel .form-row label{display:flex;flex-direction:column;gap:6px;min-width:140px}
+#ownerBackupsPanel input[type="number"],#ownerBackupsPanel select{max-width:180px}
+#settingsStatus{margin-top:12px}
