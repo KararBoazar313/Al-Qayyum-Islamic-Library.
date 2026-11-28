@@ -27,6 +27,7 @@ jobs:
         run: |
           node --check app.js
           node --check server/src/index.js
+          node --check server/scripts/migrate.js
       - name: Run backend smoke tests
         run: |
           npm install --no-audit --no-fund --prefix server
