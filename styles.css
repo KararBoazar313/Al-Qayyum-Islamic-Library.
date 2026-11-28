@@ -350,3 +350,16 @@ input:focus,select:focus,textarea:focus{outline:2px solid #0b806522;border-color
 @media(max-width:420px){.owner-welcome{padding:17px}.owner-welcome p{max-width:240px;font-size:13px}.owner-emblem{width:62px;height:62px}.owner-emblem span{font-size:35px}.owner-stat-card{padding:10px}.owner-stat-icon{top:9px;left:9px;width:27px;height:27px}.owner-shortcut-grid{gap:7px}.owner-shortcut-grid button{min-height:82px;padding:9px}.owner-activity-grid{gap:7px}}
 
 .page-view:has(.owner-center){background:linear-gradient(135deg,#f4f9f6,#eaf3ee 58%,#f8fbf9)}
+
+/* Personal account profile */
+.profile-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.profile-heading h2{margin:0 0 6px}
+.profile-layout{display:grid;grid-template-columns:minmax(180px,240px) minmax(0,1fr);gap:24px;align-items:start}
+.profile-avatar-panel{display:flex;flex-direction:column;align-items:center;gap:12px;padding:20px;border:1px solid var(--line,#dbe7e2);border-radius:18px;background:rgba(255,255,255,.72)}
+.profile-avatar-panel img,.profile-avatar-fallback{width:132px;height:132px;border-radius:50%;object-fit:cover;border:3px solid #d5e9e0;background:#edf6f1}
+.profile-avatar-fallback{display:grid;place-items:center;font-size:48px;color:#0b7655}
+.profile-avatar-panel form{display:flex;flex-direction:column;gap:8px;width:100%}
+.profile-file-label{text-align:center;cursor:pointer}
+.profile-fields{min-width:0}
+.profile-fields .field textarea{width:100%;resize:vertical}
+@media(max-width:680px){.profile-layout{grid-template-columns:1fr}.profile-avatar-panel{max-width:320px;margin:auto;width:100%}}
