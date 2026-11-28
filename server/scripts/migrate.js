@@ -44,18 +44,18 @@ try {
   const seenVersions=new Map();
   for(const filename of files){
     if(skippedLegacy.has(filename)){
-      console.log(\`SKIP legacy/unintegrated migration \${filename}\`);
+      console.log(`SKIP legacy/unintegrated migration ${filename}`);
       continue;
     }
 
     const version=filename.slice(0,3);
     const previous=seenVersions.get(version);
-    if(previous) throw new Error(\`Duplicate migration version \${version}: \${previous} and \${filename}\`);
+    if(previous) throw new Error(`Duplicate migration version ${version}: ${previous} and ${filename}`);
     seenVersions.set(version,filename);
 
     const done=await client.query('SELECT 1 FROM qayyum.schema_migrations WHERE version=$1',[version]);
     if(done.rowCount){
-      console.log(\`SKIP applied migration \${filename}\`);
+      console.log(`SKIP applied migration ${filename}`);
       continue;
     }
 
@@ -68,13 +68,13 @@ try {
       await client.query(sql);
       await client.query('INSERT INTO qayyum.schema_migrations(version,filename) VALUES($1,$2)',[version,filename]);
       await client.query('COMMIT');
-      console.log(\`APPLIED \${filename}\`);
+      console.log(`APPLIED ${filename}`);
     } catch(error) {
       await client.query('ROLLBACK');
-      throw new Error(\`Migration \${filename} failed: \${error.message}\`,{cause:error});
+      throw new Error(`Migration ${filename} failed: ${error.message}`,{cause:error});
     }
   }
-  console.log(\`Migration check complete (\${files.length} files discovered).\`);
+  console.log(`Migration check complete (${files.length} files discovered).`);
 } finally {
   client.release();
   await pool.end();
