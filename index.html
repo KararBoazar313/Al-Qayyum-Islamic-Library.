@@ -15,78 +15,54 @@
 </head>
 <body class="qayyum-home">
 <header class="topbar" id="topbar">
+  <div class="top-tools">
+    <a class="profile-chip" href="#login"><span class="profile-avatar">♙</span><span><small>مرحباً بك</small><b>حسابك</b></span><span>⌄</span></a>
+    <div class="utility-icons"><a href="#notifications" aria-label="الإشعارات">♧</a><a href="#contact" aria-label="الدعم">✉</a><a href="#calendar" aria-label="التقويم">▦</a><a href="#settings" aria-label="الإعدادات">⚙</a></div>
+    <button class="language-chip" id="languageButton" type="button"><span>◎</span><span id="currentLanguageLabel">العربية</span><b>⌄</b></button>
+  </div>
+  <a class="top-brand" href="#home"><img class="brand-emblem" src="assets/qayyum-emblem.jpg" alt=""><span><strong>مكتبة القيّوم</strong><small>موسوعة ومكتبة علمية إسلامية عالمية</small></span></a>
+  <div class="header-search-area"><a class="header-search-link" href="#library"><span>ابحث في مكتبة القيّوم...</span><b>⌕</b></a><p>العلم نور .. والبحث عبادة</p></div>
+  <a class="admin" href="#login">دخول الحساب</a>
+</header>
+<div class="nav-wrap">
   <button class="menu-toggle" id="menuToggle" aria-label="فتح القائمة" aria-expanded="false">☰</button>
   <nav id="mainNav" aria-label="التنقل الرئيسي">
-    <a class="active" href="#home">⌂ الرئيسية</a><a href="#sections">▦ الأقسام</a><a href="#library">▣ المكتبة</a><a href="#research">✎ البحوث</a><a href="#about">ⓘ عن المكتبة</a><a href="#contact">✉ اتصل بنا</a>
+    <a class="active" href="#home">⌂ الرئيسية</a><a href="#library">▣ الكتب</a><a href="#authors">♟ المؤلفون</a><a href="#research">✎ الأبحاث</a><a href="#audio">♫ المكتبة الصوتية</a><a href="#translations">◎ الترجمات</a><a href="#tests">☑ الاختبارات</a><a href="#articles">▤ المقالات</a>
+    <details class="nav-more"><summary>المزيد ⌄</summary><div class="nav-more-menu"><a href="#hadith">موسوعة الحديث والروايات</a><a href="#rijal">علم الرجال والتراجم</a><a href="#study">مكتب الباحث</a><a href="#assistant">المساعد العلمي الذكي</a><a href="#reader">قارئ الكتب</a><a href="#personal">مكتبتي الشخصية</a><a href="#groups">المجموعات والقنوات</a><a href="#calendar">التقويم والمناسبات</a><a href="#notifications">الإشعارات</a><a href="#settings">الإعدادات والخصوصية</a><a href="#dashboard" hidden>مركز المالك</a><a href="#staff" hidden>الأقسام والموظفون</a></div></details>
   </nav>
-  <div class="top-brand" aria-label="مكتبة القيّوم"><img class="brand-emblem" src="assets/qayyum-emblem.jpg" alt="" aria-hidden="true"><div><strong>مكتبة القيّوم</strong><small>بوابة المعرفة الإسلامية الموثوقة</small></div></div>
-  <a class="admin" href="#login">♟ دخول الإدارة</a>
-</header>
-<main id="homeView">
-  <section class="home-search-band" aria-label="البحث في المكتبة">
-    <div class="search-tools"><label class="category-select"><span>⌄</span><select aria-label="تحديد قسم البحث"><option>جميع الأقسام</option><option>القرآن الكريم</option><option>العقائد</option><option>أهل البيت عليهم السلام</option><option>الحديث والروايات</option><option>علم الرجال</option><option>الفقه وأصوله</option><option>التاريخ والسيرة</option><option>اللغة والأدب</option><option>المخطوطات</option><option>البحوث والتحقيقات</option></select></label><a class="filter-link" href="#library" aria-label="خيارات البحث">☷</a></div>
-    <div class="search-wrap"><form id="searchForm"><button aria-label="بحث">⌕</button><input id="searchInput" type="search" placeholder="ابحث في الكتب والروايات والمؤلفين ..." aria-label="ابحث في المكتبة"></form><p class="search-feedback" id="searchFeedback" aria-live="polite"></p></div>
-    <div class="search-note">ابحث في فهارس الكتب والمصادر العلمية</div>
-  </section>
-
-  <div class="home-layout">
-    <aside class="home-sidebar" id="sections">
-      <h2><span>▦</span> الأقسام الرئيسية</h2>
-      <a href="#quran"><span>📗</span> القرآن الكريم <b>‹</b></a>
-      <a href="#aqaed"><span>✥</span> العقائد <b>‹</b></a>
-      <a href="#ahlulbayt"><span>🕌</span> أهل البيت عليهم السلام <b>‹</b></a>
-      <a href="#hadith"><span>📜</span> الحديث والروايات <b>‹</b></a>
-      <a href="#fiqh"><span>⚖️</span> الفقه <b>‹</b></a>
-      <a href="#history"><span>🪶</span> التاريخ الإسلامي <b>‹</b></a>
-      <a href="#library"><span>📚</span> المكتبة الإسلامية <b>‹</b></a>
-      <a href="#research"><span>🔎</span> البحوث والتحقيقات <b>‹</b></a>
-      <button class="language-entry" id="languageButton" type="button"><span>🌐</span> <span id="currentLanguageLabel">اللغة العربية</span><b>‹</b></button>
-      <details class="more-sections"><summary>بقية أقسام المكتبة <b>＋</b></summary>
-      <a href="#usul">أصول الفقه</a><a href="#ethics">الأخلاق والآداب</a><a href="#language">اللغة والأدب والبلاغة</a><a href="#logic">المنطق والفلسفة والكلام</a><a href="#rijal">علم الرجال والتراجم</a><a href="#manuscripts">المخطوطات والتراث</a><a href="#comparative">الدراسات والمقارنات الحديثية</a><a href="#sources">المصادر والمراجع والحقوق</a><a href="#publishers">الناشرون والطبعات والمحققون</a><a href="#translations">الترجمة وإدارة اللغات</a><a href="#digital">الأرشيف والكتب الرقمية</a><a href="#ocr">الرقمنة و OCR / HTR</a><a href="#research">البحوث والمشاريع العلمية</a><a href="#study">مكتب الباحث والدراسة</a><a href="#assistant">المساعد العلمي</a><a href="#reader">قارئ الكتب</a><a href="#personal">المكتبة الشخصية</a><a href="#calendar">التقويم والمناسبات</a><a href="#groups">المجموعات والقنوات</a><a href="#notifications">الإشعارات</a><a href="#dashboard" hidden>الإدارة ومركز التحكم</a><a href="#staff" hidden>الأقسام والموظفون</a><a href="#projects">المشاريع والمهام والاجتماعات النصية</a><a href="#quality">الجودة والتحقق العلمي</a><a href="#economy">الاقتصاد والمال</a><a href="#society">العلوم الاجتماعية</a><a href="#education">التربية والتعليم</a><a href="#geography">الجغرافيا والرحلات</a><a href="#law">القانون والأنظمة</a><a href="#natural">العلوم الطبيعية</a><a href="#prayers">الأدعية والزيارات</a>
-      </details><a class="all-sections" href="#all-sections">عرض جميع الأقسام ←</a>
-    </aside>
-
-    <div class="home-main-column">
-      <section class="stats-row" aria-label="إحصائيات المكتبة">
-        <div class="stats-main"><h2>إحصائيات مكتبة القيّوم <span>▣</span></h2><div class="stats-values">
-          <div><b>عدد الكتب</b><strong>—</strong><small>يُحدّث بعد ربط الفهرس</small></div>
-          <div><b>عدد الروايات</b><strong>—</strong><small>يُحدّث بعد ربط المصادر</small></div>
-          <div><b>عدد البحوث</b><strong>—</strong><small>يُحدّث بعد تفعيل النظام</small></div>
-          <div><b>عدد الزوار</b><strong>—</strong><small>إحصائية غير مفعّلة حالياً</small></div>
-        </div></div>
-        <div class="stats-tile members"><span>♟</span><b>الأعضاء</b><strong>قريباً</strong><small>بعد تشغيل الحسابات</small></div>
-        <div class="stats-tile downloads"><span>☁</span><b>التحميلات</b><strong>قريباً</strong><small>بعد تشغيل الأرشيف</small></div>
-      </section>
-
-      <section class="latest-books" id="library">
-        <div class="section-heading"><h2>أحدث الكتب <span>۞</span></h2><a href="#library">عرض فهرس المكتبة ←</a></div>
-        <p class="catalog-note">نماذج شكلية لتصميم بطاقات الكتب — لا تمثل كتباً مضافة أو ملفات متاحة حالياً</p>
-        <div class="book-showcase">
-          <article class="show-book"><img class="cover-image" src="assets/book-cover-quran.jpg" alt="غلاف تفسير القرآن الكريم"><h3>تفسير القرآن العظيم</h3><p>ابن كثير</p><div class="book-actions"><a href="#reader">◉ قراءة</a><a href="#library">⇩ تحميل</a></div></article>
-          <article class="show-book"><img class="cover-image" src="assets/book-cover-nahj.jpg" alt="غلاف نهج البلاغة"><h3>نهج البلاغة</h3><p>الشريف الرضي</p><div class="book-actions"><a href="#reader">◉ قراءة</a><a href="#library">⇩ تحميل</a></div></article>
-          <article class="show-book"><img class="cover-image" src="assets/book-cover-kafi.jpg" alt="غلاف الكافي"><h3>الكافي</h3><p>الشيخ الكليني</p><div class="book-actions"><a href="#reader">◉ قراءة</a><a href="#library">⇩ تحميل</a></div></article>
-          <article class="show-book"><img class="cover-image" src="assets/book-cover-bihar.jpg" alt="غلاف بحار الأنوار"><h3>بحار الأنوار</h3><p>العلامة المجلسي</p><div class="book-actions"><a href="#reader">◉ قراءة</a><a href="#library">⇩ تحميل</a></div></article>
-          <article class="show-book"><img class="cover-image" src="assets/book-cover-wasail.jpg" alt="غلاف وسائل الشيعة"><h3>وسائل الشيعة</h3><p>الحر العاملي</p><div class="book-actions"><a href="#reader">◉ قراءة</a><a href="#library">⇩ تحميل</a></div></article>
-          <article class="show-book"><img class="cover-image" src="assets/book-cover-khesal.jpg" alt="غلاف الخصال"><h3>الخصال</h3><p>الشيخ الصدوق</p><div class="book-actions"><a href="#reader">◉ قراءة</a><a href="#library">⇩ تحميل</a></div></article>
-        </div>
-        <a class="more-books" href="#library">◉ عرض المزيد من الكتب ←</a>
-      </section>
-    </div>
+</div>
+<main id="homeView"><div class="home-layout">
+  <aside class="home-left">
+    <section class="side-card assistant-mini"><div class="side-card-title">✦ مساعد الذكاء الاصطناعي</div><div class="assistant-visual"><div class="robot-orb">✧</div><div><b>مرحباً بك في مكتبة القيّوم</b><p>كيف أساعدك في رحلتك العلمية اليوم؟</p></div></div><a class="glow-link" href="#assistant">ابدأ المحادثة <span>➜</span></a></section>
+    <section class="side-card stats-panel"><div class="side-card-title">▥ إحصائيات المكتبة</div><div class="mini-stats">
+      <a href="#library"><span class="stat-icon">▣</span><b>—</b><small>كتاب</small></a><a href="#authors"><span class="stat-icon violet">♟</span><b>—</b><small>مؤلف</small></a><a href="#groups"><span class="stat-icon blue">♧</span><b>—</b><small>مستخدم</small></a><a href="#audio"><span class="stat-icon silver">♫</span><b>—</b><small>مادة صوتية</small></a><a href="#research"><span class="stat-icon violet">▤</span><b>—</b><small>بحث</small></a><a href="#tests"><span class="stat-icon lime">☑</span><b>—</b><small>اختبار</small></a>
+    </div><p class="data-note">تُعرض الأرقام بعد ربط الإحصائيات الفعلية.</p></section>
+    <section class="side-card featured-links"><div class="side-card-title">★ أقسام مميزة</div><a href="#fiqh">الفقه وأصوله <b>‹</b></a><a href="#aqaed">العقيدة والكلام <b>‹</b></a><a href="#history">التاريخ الإسلامي <b>‹</b></a><a href="#natural">العلوم الطبيعية <b>‹</b></a></section>
+    <a class="library-anywhere" href="#library"><span>🌐</span><b>مكتبة القيّوم</b><small>معرفتك بين يديك في كل مكان</small></a>
+  </aside>
+  <div class="home-center">
+    <section class="home-hero"><div class="hero-copy"><span class="hero-kicker">منارة العلم والمعرفة</span><h1>مكتبة القيّوم</h1><p>نافذتك إلى بحر العلم والمعرفة</p><div class="hero-decoration">✧ ━━━━━━━━━ ✧</div></div>
+      <form id="searchForm" class="hero-search"><input id="searchInput" type="search" placeholder="ابحث عن كتاب، مؤلف، موضوع ..." aria-label="ابحث في المكتبة"><button type="submit" aria-label="بحث">⌕</button><a href="#library" class="advanced-search-link">بحث متقدم <span>☷</span></a></form>
+      <p class="search-feedback" id="searchFeedback" aria-live="polite"></p><div class="hero-filters"><a href="#library">أحدث الإصدارات</a><a href="#library">الأكثر قراءة</a><a href="#library">الأكثر تقييماً</a><a href="#personal">محتوى مقترح لك ★</a></div>
+    </section>
+    <section class="home-category-grid" aria-label="أقسام المكتبة الرئيسية">
+      <a class="category-card" href="#library"><img src="assets/category-1.jpg" alt=""><b>الكتب الإلكترونية</b><span>استكشف الفهرس <i>›</i></span></a><a class="category-card" href="#authors"><img src="assets/category-2.jpg" alt=""><b>المؤلفون والعلماء</b><span>تراجم وفهارس <i>›</i></span></a><a class="category-card" href="#study"><img src="assets/category-3.jpg" alt=""><b>الباحث المتقدم</b><span>أدوات البحث <i>›</i></span></a><a class="category-card" href="#articles"><img src="assets/category-4.jpg" alt=""><b>المقالات والدراسات</b><span>قراءة علمية <i>›</i></span></a><a class="category-card" href="#tests"><img src="assets/category-5.jpg" alt=""><b>الاختبارات العلمية</b><span>اختبر معرفتك <i>›</i></span></a><a class="category-card" href="#translations"><img src="assets/category-6.jpg" alt=""><b>الترجمات</b><span>أكثر من لغة <i>›</i></span></a><a class="category-card" href="#audio"><img src="assets/category-7.jpg" alt=""><b>المكتبة الصوتية</b><span>استمع وتعلّم <i>›</i></span></a>
+    </section>
+    <section class="home-content-row">
+      <article class="content-panel books-panel"><div class="panel-heading"><div><span>♨</span><h2>الكتب الأكثر قراءة</h2></div><a href="#library">عرض الكل ←</a></div><div class="book-mini-grid"><a href="#reader"><img src="assets/book-cover-nahj.jpg" alt="نهج البلاغة"><b>نهج البلاغة</b></a><a href="#reader"><img src="assets/book-cover-kafi.jpg" alt="الكافي"><b>الكافي</b></a><a href="#reader"><img src="assets/book-cover-bihar.jpg" alt="بحار الأنوار"><b>بحار الأنوار</b></a><a href="#reader"><img src="assets/book-cover-quran.jpg" alt="تفسير القرآن"><b>تفسير القرآن</b></a></div><small class="panel-note">نماذج عرض تصميمية — تُستبدل بنتائج الفهرس الفعلية.</small></article>
+      <article class="content-panel books-panel"><div class="panel-heading"><div><span>✦</span><h2>أحدث الإضافات</h2></div><a href="#library">عرض الكل ←</a></div><div class="book-mini-grid"><a href="#reader"><img src="assets/book-cover-wasail.jpg" alt="وسائل الشيعة"><b>وسائل الشيعة</b></a><a href="#reader"><img src="assets/book-cover-khesal.jpg" alt="الخصال"><b>الخصال</b></a><a href="#reader"><img src="assets/book-cover-kafi.jpg" alt="الكافي"><b>الكافي</b></a><a href="#reader"><img src="assets/book-cover-nahj.jpg" alt="نهج البلاغة"><b>نهج البلاغة</b></a></div><small class="panel-note">نماذج عرض تصميمية — لا تمثل سجلات منشورة.</small></article>
+      <article class="content-panel article-panel"><div class="panel-heading"><div><span>▤</span><h2>مقالات ودراسات</h2></div><a href="#articles">عرض الكل ←</a></div><img src="assets/featured-panel-art.jpg" alt="" class="article-art"><h3>مساحة للبحوث والدراسات العلمية</h3><p>محتوى موثق، ومصادر واضحة، ومراجعة علمية قبل النشر.</p><a class="panel-action" href="#research">استكشف مركز البحوث</a></article>
+    </section>
   </div>
-
-  <section class="home-bottom-panels">
-    <article class="bottom-panel"><h2>📢 الأخبار والإعلانات</h2><p>تظهر هنا إعلانات المكتبة وأخبارها بعد تفعيل لوحة الإدارة.</p><a href="#notifications">متابعة الإشعارات ←</a></article>
-    <article class="bottom-panel"><h2>✎ أحدث البحوث</h2><p>مساحة مخصصة للبحوث والدراسات العلمية الموثقة.</p><a href="#research">استعراض البحوث ←</a></article>
-    <article class="bottom-panel"><h2>▤ مقالات مختارة</h2><p>مختارات علمية من أقسام المكتبة المختلفة.</p><a href="#research">عرض المقالات ←</a></article>
-  </section>
-  <section class="quick-access"><a href="#study"><b>🎓 الوضع العلمي</b><span>دفتر الدروس والتحقيق والاقتباسات</span></a><a href="#hadith"><b>📜 موسوعة الروايات</b><span>المتون والطرق والرواة والمصادر</span></a><a href="#groups"><b>🏛 المجموعات والقنوات</b><span>مجتمعات علمية بإشراف ومراجعة</span></a><a href="#dashboard" hidden><b>📊 مركز التحكم</b><span>إدارة المنصة والتقارير والصلاحيات</span></a><a href="#assistant"><b>🤖 المساعد العلمي</b><span>مصادر موثقة وتحليل علمي مفصول</span></a><a href="#personal"><b>📚 مكتبتي الشخصية</b><span>رفوف القراءة والملاحظات والعلامات</span></a><a href="#reader"><b>📖 قارئ الكتب</b><span>قراءة PDF والنصوص الرقمية</span></a><a href="#calendar"><b>☾ التقويم الهجري</b><span>المناسبات والتواريخ</span></a></section>
-  <section class="planned-modules" id="all-sections" aria-label="دليل أقسام مكتبة القيّوم"><h2>دليل أقسام مكتبة القيّوم</h2><p class="directory-intro">الأقسام العلمية والبحثية والإدارية والخدمات المساندة في مكان واحد</p><div class="planned-grid">
-    <a href="#quran">القرآن وعلومه</a><a href="#aqaed">العقائد والكلام</a><a href="#ahlulbayt">أهل البيت والسيرة</a><a href="#hadith">الحديث والروايات</a><a href="#rijal">علم الرجال والتراجم</a><a href="#fiqh">الفقه</a><a href="#usul">أصول الفقه</a><a href="#history">التاريخ والسيرة</a><a href="#ethics">الأخلاق والآداب</a><a href="#prayers">الأدعية والزيارات</a><a href="#language">اللغة والأدب والبلاغة</a><a href="#logic">المنطق والفلسفة والكلام</a><a href="#comparative">المقارنة الحديثية</a><a href="#manuscripts">المخطوطات والفهارس</a><a href="#ocr">الرقمنة و OCR / HTR</a><a href="#translations">مركز الترجمة واللغات</a><a href="#sources">المصادر والمراجع والحقوق</a><a href="#publishers">الطبعات والناشرون</a><a href="#digital">الأرشيف الرقمي</a><a href="#quality">الجودة والتحقق العلمي</a><a href="#research">البحوث والدراسات</a><a href="#study">مكتب الباحث</a><a href="#assistant">المساعد العلمي</a><a href="#reader">قارئ الكتب</a><a href="#personal">المكتبة الشخصية</a><a href="#calendar">التقويم والمناسبات</a><a href="#groups">المجموعات والقنوات</a><a href="#notifications">الإشعارات</a><a href="#staff" hidden>الأقسام والموظفون</a><a href="#projects">المشاريع والمهام</a><a href="#dashboard" hidden>الإدارة ومركز التحكم</a><a href="#economy">الاقتصاد والمال</a><a href="#society">العلوم الاجتماعية</a><a href="#education">التربية والتعليم</a><a href="#geography">الجغرافيا والرحلات</a><a href="#law">القانون</a><a href="#natural">العلوم الطبيعية</a>
-  </div></section>
-  <section class="motto-band" id="about"><h2>اللهم صل على محمد وآل محمد</h2><p>العلم نورٌ يهدي إلى الحق</p></section>
-</main>
+  <aside class="home-right">
+    <section class="user-panel"><div class="side-card-title">♙ لوحة المستخدم</div><a href="#personal">مكتبتي الشخصية <b>▣</b></a><a href="#personal">الكتب المحفوظة <b>♧</b></a><a href="#reader">تاريخ القراءة <b>◷</b></a><a href="#tests">اختباراتي <b>☑</b></a><a href="#notifications">إشعاراتي <em>3</em><b>♧</b></a><a href="#settings">إعدادات الحساب <b>⚙</b></a><a href="#login">تسجيل الدخول <b>⇥</b></a></section>
+    <section class="side-card ai-promo"><div class="side-card-title">مساعد الذكاء الاصطناعي</div><div class="brain-symbol">✧</div><p>اسأل عن أي مسألة علمية، وابحث في المصادر الموثقة.</p><a class="glow-link" href="#assistant">ابدأ المحادثة <span>➜</span></a></section>
+    <section class="side-card quiz-promo"><div class="side-card-title">☑ الاختبارات السريعة</div><p>اختبر معلوماتك وراجع ما تعلمته.</p><a class="glow-link" href="#tests">ابدأ الاختبار <span>➜</span></a></section>
+    <section class="side-card quick-tools"><div class="side-card-title">أدوات الوصول السريع</div><a href="#hadith">موسوعة الروايات</a><a href="#rijal">علم الرجال</a><a href="#calendar">التقويم الهجري</a></section>
+  </aside>
+</div></main>
 <div id="pageView" class="page-view" hidden></div>
-<footer id="contact"><div class="social"><a href="#contact" aria-label="يوتيوب">▶</a><a href="#contact" aria-label="تلغرام">➤</a><a href="#contact" aria-label="فيسبوك">f</a><a href="#contact" aria-label="تغذية">◔</a></div><p>اللهم صل على محمد وآل محمد</p><small>مكتبة القيّوم © 2026 · جميع الحقوق محفوظة</small></footer>
+<footer id="contact" class="site-footer"><div class="footer-brand"><img src="assets/qayyum-emblem.jpg" alt=""><b>مكتبة القيّوم</b><small>معرفة · إيمان · حضارة</small></div><div class="footer-links"><a href="#home">الرئيسية</a><a href="#about">عن المكتبة</a><a href="#contact">اتصل بنا</a><a href="#quality">الجودة والتحقق</a><a href="#sources">المصادر والحقوق</a></div><div class="footer-social"><a href="#contact">▶</a><a href="#contact">➤</a><a href="#contact">𝕏</a><a href="#contact">f</a></div><small class="copyright">مكتبة القيّوم © 2026 · جميع الحقوق محفوظة</small></footer>
 <div class="notice" id="notice" role="status" aria-live="polite"></div>
 <dialog id="languageDialog" class="modal"><form method="dialog"><button class="modal-close" aria-label="إغلاق">×</button></form><h2>لغة واجهة المكتبة</h2><p class="muted">العربية هي اللغة الأصلية. اختر واحدة من 51 لغة لتغيير لغة واجهة الموقع واتجاهها. تُستخدم ترجمة آلية للغات الأخرى عند توفرها، وقد تحتاج المصطلحات العلمية إلى مراجعة بشرية.</p><input id="languageSearch" class="search-field language-search" type="search" placeholder="ابحث عن لغة..." aria-label="ابحث عن لغة"><div class="language-grid" id="languageGrid"></div><p class="language-status" id="languageStatus" aria-live="polite">51 لغة متاحة · العربية هي اللغة الافتراضية</p></dialog>
 <div id="google_translate_element" aria-hidden="true"></div>
