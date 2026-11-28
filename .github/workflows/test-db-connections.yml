@@ -6,6 +6,9 @@ on:
     paths:
       - ".github/workflows/test-db-connections.yml"
       - "Dockerfile.api"
+      - "index.html"
+      - "app.js"
+      - "styles.css"
       - "database/**"
       - "server/package.json"
       - "server/scripts/**"
@@ -20,6 +23,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Check JavaScript syntax
+        run: |
+          node --check app.js
+          node --check server/src/index.js
       - name: Run backend smoke tests
         run: |
           npm install --no-audit --no-fund --prefix server
