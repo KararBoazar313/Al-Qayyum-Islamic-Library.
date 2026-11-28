@@ -320,3 +320,13 @@ input:focus,select:focus,textarea:focus{outline:2px solid #0b806522;border-color
 .register-remember span{font-size:11px;color:#60786e}
 .auth-card .remember-login input[type="checkbox"]{accent-color:#08765d}
 @media(max-width:480px){.auth-card .card-body{padding:18px 15px}.auth-submit{width:min(100%,190px)}}
+
+.file-review-card{margin:12px 0;padding:14px;border:1px solid #d5e5dd;border-radius:15px;background:linear-gradient(150deg,#fff,#f5faf7)}
+.file-review-card .form-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.file-review-card .field{display:grid;gap:5px}
+.file-review-card select,.file-review-card input,.file-review-card textarea{width:100%;min-width:0;padding:9px 10px;border:1px solid #d0e0d8;border-radius:9px;background:#fff;color:#214b3f}
+.file-review-card textarea{min-height:72px;resize:vertical}
+.file-review-card code{overflow-wrap:anywhere;font-size:10px}
+.report-snapshot{max-height:230px;overflow:auto;padding:10px;border:1px solid #d9e7e0;border-radius:10px;background:#f6faf8;color:#315b4c;direction:ltr;text-align:left;font-size:11px;white-space:pre-wrap;overflow-wrap:anywhere}
+#adminWorkspacePanel>.paper-card{margin:12px 0}
+#adminWorkspacePanel .stat-card{min-width:0}
