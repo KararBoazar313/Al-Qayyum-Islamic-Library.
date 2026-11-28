@@ -255,3 +255,15 @@ input:focus,select:focus,textarea:focus{outline:2px solid #0b806522;border-color
 .auth-switch{text-align:center;margin:18px 0 0;color:#65776f;font-size:13px}
 .auth-switch a{color:#08745b;font-weight:800;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:480px){.auth-card .card-body{padding:18px 15px}}
+
+/* Specificity bridge for the former header selectors */
+.qayyum-home .topbar{grid-template-columns:minmax(0,1fr) auto minmax(260px,1fr) auto;grid-template-areas:none;align-items:center;gap:22px;padding:12px clamp(14px,2.4vw,38px);background:linear-gradient(112deg,#032c25,#06493e 56%,#092f29);border:0;border-bottom:1px solid #8ba59a;box-shadow:0 8px 26px #00251e30;position:relative;z-index:20}
+.qayyum-home .top-tools{grid-column:1;grid-row:1}
+.qayyum-home .top-brand{grid-column:2;grid-row:1;min-width:220px;display:flex;align-items:center;justify-content:center;gap:9px;color:#f1f5f2;text-align:center}
+.qayyum-home .header-search-area{grid-column:3;grid-row:1}
+.qayyum-home .topbar>.admin{grid-column:4;grid-row:1;justify-self:end}
+.qayyum-home .menu-toggle{display:none}
+.qayyum-home .site-footer{background:linear-gradient(100deg,#032e27,#075448);border-top:1px solid #8ba99b;color:#eaf3ee}
+@media(max-width:980px){.qayyum-home .topbar{grid-template-columns:1fr auto;grid-template-areas:"tools brand" "search search";gap:8px;padding:10px 14px}.qayyum-home .top-tools{grid-area:tools;grid-column:auto;grid-row:auto}.qayyum-home .top-brand{grid-area:brand;grid-column:auto;grid-row:auto}.qayyum-home .header-search-area{grid-area:search;grid-column:auto;grid-row:auto}.qayyum-home .topbar>.admin{display:none}}
+@media(max-width:760px){.qayyum-home .menu-toggle{display:block}}
+@media(max-width:480px){.qayyum-home .topbar{grid-template-columns:1fr;grid-template-areas:"brand" "tools" "search";justify-items:center}.qayyum-home .top-tools,.qayyum-home .top-brand,.qayyum-home .header-search-area{grid-column:auto;grid-row:auto}}
