@@ -369,3 +369,6 @@ input:focus,select:focus,textarea:focus{outline:2px solid #0b806522;border-color
 #ownerBackupsPanel .form-row label{display:flex;flex-direction:column;gap:6px;min-width:140px}
 #ownerBackupsPanel input[type="number"],#ownerBackupsPanel select{max-width:180px}
 #settingsStatus{margin-top:12px}
+
+/* Profile cover editor */
+.profile-cover-editor{width:100%;margin-top:14px;padding-top:14px;border-top:1px solid var(--line,#dbe7e2);display:flex;flex-direction:column;gap:10px;align-items:stretch}.profile-cover-editor>b{font-size:.9rem;color:var(--ink,#183b32)}.profile-cover-editor img,.profile-cover-fallback{width:100%;height:104px;object-fit:cover;border-radius:12px;border:1px solid var(--line,#dbe7e2)}.profile-cover-fallback{display:grid;place-items:center;background:linear-gradient(135deg,#e7f2ec,#d4e5dc);color:#28644f;font-size:.95rem}.profile-cover-editor form{display:grid;grid-template-columns:1fr 1fr;gap:7px}.profile-cover-editor form .profile-file-label{grid-column:1/-1;text-align:center}
